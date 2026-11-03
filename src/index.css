@@ -1,0 +1,118 @@
+/* ===== RESET & BASE (Snazzy Parfait Theme) ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Snazzy Parfait Theme Variables */
+  --navy: #1a2744;
+  --navy-deep: #0f172a;
+  --navy-cinema: #081224;
+  --navy-surface: #0b1a33;
+  --navy-panel: #0d1b3a;
+  
+  --blue: #1f6fe5;
+  --blue-bright: #3b9eff;
+  --blue-sky: #60a5fa;
+  --blue-light: #93c5fd;
+  --blue-soft: #e8f1ff;
+  
+  --text: #1a2744;
+  --muted: #5a6785;
+  --white: #ffffff;
+  --line: rgba(26, 39, 68, 0.08);
+  --line-dark: rgba(148, 163, 184, 0.14);
+  --trust-bg: #f3f5f8;
+  --body-bg: #f7f8fb;
+  
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 14px 40px rgba(15, 23, 42, 0.12);
+  --shadow-blue: 0 8px 24px rgba(31, 111, 229, 0.35);
+  --shadow-silver: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 10px 26px rgba(15, 23, 42, 0.35);
+
+  --radius-xs: 0.35rem;
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-card: 1.05rem;
+  --radius-pill: 999px;
+
+  --font-body: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Montserrat', sans-serif;
+  --font-std: 'Montserrat', 'Manrope', sans-serif;
+
+  /* Backward compatible aliases */
+  --blue-950: #081224;
+  --blue-900: #0b1a33;
+  --blue-800: #0f172a;
+  --blue-700: #14264d;
+  --blue-600: #1a5fd4;
+  --blue-500: #1f6fe5;
+  --blue-400: #3b9eff;
+  --blue-300: #60a5fa;
+  --blue-200: #93c5fd;
+  --blue-100: #bfdbfe;
+  --blue-50: #e8f1ff;
+
+  --orange-600: #1a5fd4;
+  --orange-500: #1f6fe5;
+  --orange-400: #38bdf8;
+  --orange-300: #93c5fd;
+  --orange-200: #bfdbfe;
+  --orange-100: #e8f1ff;
+  --shadow-orange: 0 8px 24px rgba(31, 111, 229, 0.35);
+
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  --gradient-blue: linear-gradient(135deg, #2f7ef0, #1a5fd4);
+  --gradient-silver: linear-gradient(135deg, #f8fafc, #cbd5e1 48%, #93c5fd);
+  --gradient-orange: linear-gradient(135deg, #f8fafc, #cbd5e1 48%, #93c5fd);
+  --gradient-hero: linear-gradient(180deg, #081224 0%, #0b1a33 60%, #0d1f3c 100%);
+  --gradient-text: linear-gradient(120deg, #3b9eff, #60a5fa 40%, #93c5fd);
+
+  font-family: var(--font-body);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--body-bg);
+  color: var(--muted);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root { width: 100%; max-width: 100%; margin: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--navy-deep);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+a { color: var(--blue); text-decoration: none; transition: color 0.2s ease, opacity 0.2s ease; }
+a:hover { color: var(--blue-bright); }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 72px);
+}
+
+.accent-text { color: var(--blue-sky); }
+.blue-text { color: var(--blue); }
