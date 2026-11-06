@@ -1,156 +1,125 @@
-import { useState, useEffect, useRef } from 'react'
-import heroVideo from './grok-video-cropped.mp4'
+﻿import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import './pages/service-page.css'
+import Icon from './components/Icon'
+import Soc2Type1Page from './pages/Soc2Type1Page'
+import Soc2Type2Page from './pages/Soc2Type2Page'
+import Soc3Page from './pages/Soc3Page'
+import HipaaPage from './pages/HipaaPage'
+import Iso27001Page from './pages/Iso27001Page'
+import Iso27000Page from './pages/Iso27000Page'
+import Iso27701Page from './pages/Iso27701Page'
+import CloudSecurityReviewPage from './pages/CloudSecurityReviewPage'
+import RedTeamingPage from './pages/RedTeamingPage'
+import WaptPage from './pages/WaptPage'
+import ApiMicroservicesSecurityPage from './pages/ApiMicroservicesSecurityPage'
+import DroneSecurityPage from './pages/DroneSecurityPage'
 
-function Icon({ name, className = '' }) {
-  const icons = {
-    devices: (
-      <>
-        <rect x="4" y="4" width="16" height="16" rx="2" />
-        <rect x="9" y="9" width="6" height="6" rx="1" />
-        <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2" />
-      </>
-    ),
-    document: (
-      <>
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <path d="M14 2v6h6" />
-        <path d="M16 13H8M16 17H8M10 9H8" />
-      </>
-    ),
-    target: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <circle cx="12" cy="12" r="5" />
-        <circle cx="12" cy="12" r="1.5" />
-      </>
-    ),
-    drone: (
-      <>
-        <circle cx="6" cy="6" r="2.5" />
-        <circle cx="18" cy="6" r="2.5" />
-        <circle cx="6" cy="18" r="2.5" />
-        <circle cx="18" cy="18" r="2.5" />
-        <rect x="9" y="9" width="6" height="6" rx="1.5" />
-        <path d="M8 8l1.5 1.5M16 8l-1.5 1.5M8 16l1.5-1.5M16 16l-1.5-1.5" />
-      </>
-    ),
-    wifi: (
-      <>
-        <path d="M5 12.55a11 11 0 0 1 14 0" />
-        <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-        <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-        <path d="M12 20h.01" />
-      </>
-    ),
-    check: <path d="M20 6 9 17l-5-5" />,
-    eye: (
-      <>
-        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-        <circle cx="12" cy="12" r="3" />
-      </>
-    ),
-    scale: (
-      <>
-        <path d="M12 3v18M5 7h14M7 7l-4 8a4 4 0 0 0 8 0zM17 7l-4 8a4 4 0 0 0 8 0z" />
-      </>
-    ),
-    bolt: <path d="M13 2 3 14h7l-1 8 10-12h-7z" />,
-    shield: (
-      <>
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" />
-      </>
-    ),
-    globe: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
-      </>
-    ),
-    megaphone: (
-      <>
-        <path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z" />
-        <path d="M15 8.5a5 5 0 0 1 0 7" />
-        <path d="M18 5.5a9 9 0 0 1 0 13" />
-      </>
-    ),
-    handshake: (
-      <>
-        <path d="m11 17 2 2a1 1 0 1 0 3-3" />
-        <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" />
-        <path d="m21 3 1 11h-2" />
-        <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" />
-        <path d="M3 4h8" />
-      </>
-    ),
-    star: <path d="M12 3l2.7 5.5 6 .87-4.35 4.24 1.03 6L12 16.75 6.62 19.6l1.03-6L3.3 9.37l6-.87z" />,
-    monitor: (
-      <>
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </>
-    ),
-    trophy: (
-      <>
-        <path d="M6 4h12v5a6 6 0 0 1-12 0z" />
-        <path d="M6 6H4a2 2 0 0 0 0 4h2M18 6h2a2 2 0 0 1 0 4h-2" />
-        <path d="M12 15v3M9 21h6" />
-      </>
-    ),
-    trend: (
-      <>
-        <path d="M3 17l6-6 4 4 8-8" />
-        <path d="M15 7h6v6" />
-      </>
-    ),
-    rocket: (
-      <>
-        <path d="M5 15c-1.2 1-1.8 4.2-1.8 4.2s3.2-.6 4.2-1.8a2 2 0 0 0-2.4-2.4z" />
-        <path d="M14.5 13.5 18 10a13 13 0 0 0 3-8 13 13 0 0 0-8 3l-3.5 3.5" />
-        <path d="M9 15l-2-2M15 9l2 2" />
-        <circle cx="16.5" cy="7.5" r="1.2" />
-      </>
-    ),
-    arrow: (
-      <>
-        <path d="M4 12h15" />
-        <path d="m13 6 6 6-6 6" />
-      </>
-    ),
-    badge: (
-      <>
-        <circle cx="12" cy="9" r="5.5" />
-        <path d="M8.4 13.4 7 22l5-2.4 5 2.4-1.4-8.6" />
-        <path d="m9.8 9 1.6 1.6L14.2 7.8" />
-      </>
-    ),
+const pathRoutes = {
+  '/about': '#about',
+  '/soc2-type1': '#soc2-type1',
+  '/soc2-type2': '#soc2-type2',
+  '/soc3': '#soc3',
+  '/iso-27001': '#iso-27001',
+  '/iso-iec-27001': '#iso-27001',
+  '/iso-27000': '#iso-27000',
+  '/iso-iec-27000': '#iso-27000',
+  '/iso-27701': '#iso-27701',
+  '/iso-iec-27701': '#iso-27701',
+  '/cloud-security-review': '#cloud-security-review',
+  '/hipaa': '#hipaa',
+  '/hipaa-audit': '#hipaa',
+  '/wapt': '#wapt',
+  '/red-teaming': '#red-teaming',
+  '/api-microservices-security': '#api-microservices-security',
+  '/api-microservices-security-testing': '#api-microservices-security',
+  '/drone-security': '#drone-security',
+  '/drone-security-testing': '#drone-security',
+  '/drone-testing': '#drone-security',
+  '/uas-security': '#drone-security',
+}
+
+const resolveRoute = () => {
+  const hash = window.location.hash
+  if (hash === '#') return '#'
+  if (hash) return hash
+  const path = window.location.pathname.replace(/\/+$/, '')
+  return pathRoutes[path] || '#'
+}
+
+const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbytzBGrV1nYK8uJtMXN16xgOh-gzAnE7vO2_SeaDaM9PyEHz7gfyri_9Jsa_qeXpl59/exec'
+
+const submitInquiry = async (form) => {
+  if (!APPS_SCRIPT_WEB_APP_URL) {
+    throw new Error('Form is not connected yet. Please email info@itcindia.org directly.')
   }
 
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {icons[name]}
-    </svg>
-  )
+  const payload = new URLSearchParams(new FormData(form))
+
+  const response = await fetch(APPS_SCRIPT_WEB_APP_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: payload.toString(),
+  })
+
+  if (!response.ok) {
+    throw new Error('Unable to send your message right now. Please try again.')
+  }
+
+  let data = null
+  try {
+    data = await response.json()
+  } catch {
+    data = null
+  }
+
+  if (data && data.result === 'error') {
+    throw new Error(data.message || 'Unable to send your message right now.')
+  }
 }
+
+const searchPages = [
+  { title: 'About Us', href: '#about', keywords: 'company team experience information security' },
+  { title: 'SOC 2 Type I Readiness', href: '#soc2-type1', keywords: 'soc 2 type 1 audit compliance' },
+  { title: 'SOC 2 Type II Readiness', href: '#soc2-type2', keywords: 'soc 2 type 2 audit compliance' },
+  { title: 'SOC 3 Assurance', href: '#soc3', keywords: 'soc 3 audit compliance' },
+  { title: 'ISO/IEC 27001', href: '#iso-27001', keywords: 'iso27001 iso iec 27001 consultancy isms certification information security audit' },
+  { title: 'ISO/IEC 27000', href: '#iso-27000', keywords: 'iso27000 iso iec 27000 series consultancy strategy 27002 27005 27701 standards' },
+  { title: 'ISO/IEC 27701 Privacy Certification', href: '#iso-27701', keywords: 'iso27701 iso iec 27701 privacy pims certification personal data gdpr ccpa' },
+  { title: 'Cloud Security Review', href: '#cloud-security-review', keywords: 'cloud security review aws azure gcp infrastructure iam configuration assessment cloud penetration testing' },
+  { title: 'API & Microservices Security Testing', href: '#api-microservices-security', keywords: 'api microservices security testing rest graphql oauth authorization api gateway business logic' },
+  { title: 'Drone Security Testing', href: '#drone-security', keywords: 'drone uav uas security testing firmware rf communication ground control gps spoofing iot' },
+  { title: 'HIPAA Compliance', href: '#hipaa', keywords: 'hipaa healthcare phi patient data security audit' },
+  { title: 'Web Application Testing (WAPT)', href: '#wapt', keywords: 'web website penetration testing' },
+  { title: 'Audits & Compliance', href: '#audits', keywords: 'hipaa healthcare grc assessment' },
+  { title: 'Application Security (VAPT)', href: '#vapt-software', keywords: 'application penetration testing security' },
+  { title: 'IoT & Drone Security', href: '#vapt-iot', keywords: 'iot device drone embedded testing' },
+  { title: 'Red Teaming', href: '#red-teaming', keywords: 'red team adversary simulation offensive security' },
+  { title: 'Certifications', href: '#certifications', keywords: 'iso 27001 iso 27701 standards' },
+  { title: 'Contact Us', href: '#contact', keywords: 'contact email phone inquiry' },
+]
 
 function AboutPage() {
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitting, setFormSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
   const [inquiryType, setInquiryType] = useState('')
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
+    const form = e.currentTarget
+    setFormSubmitting(true)
+    setFormError('')
+    try {
+      await submitInquiry(form)
+      setFormSubmitted(true)
+      form.reset()
+      setTimeout(() => setFormSubmitted(false), 5000)
+    } catch (error) {
+      setFormError(error.message)
+    } finally {
+      setFormSubmitting(false)
+    }
   }
 
   const scrollToContact = (e) => {
@@ -237,7 +206,7 @@ function AboutPage() {
       <section className="section-padding about-identity">
         <div className="container about-two-col">
           <div className="about-identity-head">
-            <div className="section-label">✦ Our Identity</div>
+            <div className="section-label">Our Identity</div>
             <h2 className="section-title">The <span className="highlight-text">ITC Legacy</span></h2>
           </div>
           <div className="about-identity-text">
@@ -277,7 +246,7 @@ function AboutPage() {
       <section className="section-padding about-ethos">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Core Ethos</div>
+            <div className="section-label">Core Ethos</div>
             <h2 className="section-title">Driven by <span className="highlight-text">Principles</span></h2>
             <p className="section-subtitle">
               We don’t just sell services; we inject a culture of security into your organization. Our core values dictate every sprint, audit, and penetration test we conduct.
@@ -300,7 +269,7 @@ function AboutPage() {
         <div className="container">
           <div className="about-standards-head">
             <div className="about-standards-intro">
-              <div className="section-label">✦ Global Standards</div>
+              <div className="section-label">Global Standards</div>
               <h2 className="section-title">Compliance <span className="highlight-text">Mastery</span></h2>
               <p className="section-subtitle">
                 We benchmark your security posture against the most strenuous international frameworks, guaranteeing regulatory success and client trust.
@@ -328,7 +297,7 @@ function AboutPage() {
       <section id="about-contact" className="section-padding about-contact">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Contact Us</div>
+            <div className="section-label">Contact Us</div>
             <h2 className="section-title">Contact <span className="highlight-text">Us</span></h2>
             <p className="section-subtitle">
               Reach out for audits, compliance, or cybersecurity consultations.
@@ -347,22 +316,22 @@ function AboutPage() {
                 <div className="form-row-2">
                   <div className="form-group">
                     <label htmlFor="aboutFullName">Full Name</label>
-                    <input id="aboutFullName" type="text" className="form-input" placeholder="Full Name" required />
+                    <input id="aboutFullName" name="fullName" type="text" className="form-input" placeholder="Full Name" required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="aboutEmail">Email Address</label>
-                    <input id="aboutEmail" type="email" className="form-input" placeholder="Email Address" required />
+                    <input id="aboutEmail" name="email" type="email" className="form-input" placeholder="Email Address" required />
                   </div>
                 </div>
 
                 <div className="form-row-2">
                   <div className="form-group">
                     <label htmlFor="aboutPhone">Phone Number</label>
-                    <input id="aboutPhone" type="tel" className="form-input" placeholder="Phone Number" required />
+                    <input id="aboutPhone" name="phone" type="tel" className="form-input" placeholder="Phone Number" required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="aboutOrg">Company / Organization</label>
-                    <input id="aboutOrg" type="text" className="form-input" placeholder="Company / Organization" required />
+                    <input id="aboutOrg" name="organization" type="text" className="form-input" placeholder="Company / Organization" required />
                   </div>
                 </div>
 
@@ -370,6 +339,7 @@ function AboutPage() {
                   <label htmlFor="aboutInquiry">Select an inquiry type</label>
                   <select
                     id="aboutInquiry"
+                    name="inquiryType"
                     className="form-input form-select"
                     value={inquiryType}
                     onChange={(e) => setInquiryType(e.target.value)}
@@ -397,6 +367,7 @@ function AboutPage() {
                   <label htmlFor="aboutMessage">Describe your requirements</label>
                   <textarea
                     id="aboutMessage"
+                    name="message"
                     rows="4"
                     className="form-input form-textarea"
                     placeholder="Describe your requirements..."
@@ -404,487 +375,16 @@ function AboutPage() {
                 </div>
 
                 <div className="form-checkbox-group">
-                  <input type="checkbox" id="aboutSubscribe" defaultChecked />
+                  <input type="checkbox" id="aboutSubscribe" name="subscribe" value="yes" defaultChecked />
                   <label htmlFor="aboutSubscribe">Subscribe to security &amp; compliance updates</label>
                 </div>
 
-                <button type="submit" className="btn btn-orange btn-full">
-                  Send Message
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-    </main>
-  )
-}
+                <input type="hidden" name="formSource" value="About Page" />
 
-function Soc3Page() {
-  const [openFaq, setOpenFaq] = useState(null)
-  const [formSubmitted, setFormSubmitted] = useState(false)
-  const [inquiryType, setInquiryType] = useState('')
+                {formError && <p className="form-error" role="alert">{formError}</p>}
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
-  }
-
-  const scrollTo = (id) => (e) => {
-    e.preventDefault()
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const highlights = [
-    { icon: 'globe', title: 'Shared Freely', desc: 'Can be openly distributed on your website and to prospects.' },
-    { icon: 'megaphone', title: 'Marketing Asset', desc: 'Used extensively in marketing materials to prove your security posture.' },
-    { icon: 'handshake', title: 'No NDA Required', desc: 'Provided instantly to clients and partners without non-disclosure agreements.' },
-  ]
-
-  const comparison = [
-    { feature: 'Audience', soc2: 'Restricted (under NDA)', soc3: 'Public' },
-    { feature: 'Detail Level', soc2: 'Highly detailed technical controls', soc3: 'Summary-level overview' },
-    { feature: 'Use Case', soc2: 'Audits & enterprise client diligence', soc3: 'Marketing & trust building' },
-    { feature: 'Report Sharing', soc2: 'Limited to stakeholders with need-to-know', soc3: 'Freely shareable' },
-  ]
-
-  const impacts = [
-    { icon: 'star', text: 'Build trust with customers instantly' },
-    { icon: 'monitor', text: 'Showcase security directly on your website' },
-    { icon: 'trophy', text: 'Strengthen overall brand credibility' },
-    { icon: 'trend', text: 'Support powerful sales and marketing efforts' },
-    { icon: 'rocket', text: 'Stand out from unprepared competitors' },
-  ]
-
-  const requirements = [
-    { num: '1', title: 'Complete SOC 2', desc: 'First complete a SOC 2 Type II audit.' },
-    { num: '2', title: 'Meet Criteria', desc: 'Meet Trust Service Criteria (Security, Availability, etc.).' },
-    { num: '3', title: 'Effectiveness', desc: 'Demonstrate consistent control effectiveness over time.' },
-  ]
-
-  const process = [
-    { num: '01', title: 'SOC 2 Readiness', desc: 'Prepare your organization for SOC 2 compliance.' },
-    { num: '02', title: 'Type II Audit Completion', desc: 'Ensure controls operate effectively over time.' },
-    { num: '03', title: 'SOC 3 Report Generation', desc: 'Create a public, simplified audit report.' },
-    { num: '04', title: 'Certification & Usage Guidance', desc: 'Help you use SOC 3 for branding & sales.' },
-  ]
-
-  const covers = [
-    { title: 'Security Controls', desc: 'Validation against unauthorized access.' },
-    { title: 'System Availability', desc: 'Ensuring your systems are consistently available.' },
-    { title: 'Data Confidentiality', desc: 'Protecting confidential information.' },
-    { title: 'Privacy Protection', desc: 'Handling personal data according to policy.' },
-    { title: 'Processing Integrity', desc: 'Accurate, timely, and authorized processing.' },
-  ]
-
-  const audience = [
-    'SaaS Companies',
-    'Cloud Service Providers',
-    'Tech Startups',
-    'FinTech & Data-driven Businesses',
-    'Companies targeting global clients',
-  ]
-
-  const whyChoose = [
-    { title: 'End-to-End SOC Support', desc: 'We integrate SOC 2 + SOC 3 into one seamless journey, saving time and costs.' },
-    { title: 'Business-Focused Approach', desc: 'Not just strict compliance—we aim for active business growth enablement.' },
-    { title: 'Fast-Track Certification', desc: 'Reduce delays and complexity with our expert-led, streamlined methodologies.' },
-    { title: 'Marketing Advantage', desc: 'We actively advise you on how to best utilize your SOC 3 report as a powerful trust asset.' },
-  ]
-
-  const faqs = [
-    {
-      q: 'What is SOC 3 certification?',
-      a: 'SOC 3 is a general-use attestation report built on the same Trust Services Criteria as SOC 2. It summarizes your security, availability, confidentiality, processing integrity, and privacy controls in a simplified, non-technical format that anyone can read.'
-    },
-    {
-      q: 'Can SOC 3 be shared publicly?',
-      a: 'Yes. SOC 3 is designed for public distribution. You can publish it on your website, attach it to proposals, and share it with prospects and partners freely—no NDA or need-to-know restrictions apply.'
-    },
-    {
-      q: 'Is SOC 3 required?',
-      a: 'SOC 3 is not mandatory. It is a voluntary trust badge that complements SOC 2, ideal for organizations that want to showcase their security posture openly to accelerate sales, partnerships, and enterprise trust.'
-    },
-    {
-      q: 'Do I need SOC 2 before SOC 3?',
-      a: 'Yes. A completed SOC 2 Type II audit is the prerequisite for SOC 3, since the public SOC 3 report is derived from the same audit evidence, control testing, and observation period.'
-    },
-  ]
-
-  return (
-    <main className="soc3-page">
-      {/* ===== SOC 3 HERO ===== */}
-      <section className="soc3-hero">
-        <div className="soc3-hero-bg">
-          <img
-            src="https://res.cloudinary.com/didtfhfme/image/upload/v1793683019/ad217c99-7868-4f12-8841-593aeb2c8cc6_uuptow.png"
-            alt="ITC India SOC 3 certification — trust badge and public compliance assurance"
-          />
-          <div className="soc3-hero-overlay"></div>
-        </div>
-        <div className="container">
-          <div className="soc3-hero-content">
-            <div className="soc3-eyebrow">Trust Badge &amp; Certification</div>
-            <h1 className="soc3-hero-title">
-              SOC 3 Audit &amp;<br />
-              <span className="highlight-text">Consultancy Services in India</span>
-            </h1>
-            <p className="soc3-hero-quote">
-              &ldquo;Showcase Your Security. Build Public Trust.&rdquo;
-            </p>
-            <p className="soc3-hero-text">
-              SOC 3 is a publicly shareable report that demonstrates your organization meets strict security and compliance standards—without exposing sensitive details. At CyberSec ITC India, we help you achieve SOC 3 certification so you can confidently showcase your security posture to clients, partners, and stakeholders.
-            </p>
-            <div className="soc3-hero-actions">
-              <a href="#soc3-contact" className="btn btn-orange" onClick={scrollTo('soc3-contact')}>Get SOC 3 Certified</a>
-              <a href="#soc3-contact" className="btn btn-glass" onClick={scrollTo('soc3-contact')}>Turn Compliance into Trust</a>
-            </div>
-          </div>
-        </div>
-
-        <div className="soc3-badge" aria-hidden="true">
-          <div className="soc3-badge-seal">
-            <svg viewBox="0 0 64 64" fill="none">
-              <circle cx="32" cy="32" r="30" stroke="rgba(191,219,254,0.45)" strokeWidth="1.4" strokeDasharray="3 5" />
-              <circle cx="32" cy="32" r="24" fill="rgba(31,111,229,0.28)" stroke="#93c5fd" strokeWidth="1.4" />
-              <path d="M32 14.5 44 19v9.8c0 8.3-5.1 14.4-12 17.7-6.9-3.3-12-9.4-12-17.7V19z" fill="#1f6fe5" stroke="#e0edff" strokeWidth="1.6" strokeLinejoin="round" />
-              <path d="m26.4 31.4 4.1 4.1 7.6-7.6" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="soc3-badge-body">
-            <span className="soc3-badge-kicker">Certified · Public Report</span>
-            <strong>SOC 3</strong>
-            <span className="soc3-badge-sub">AICPA Trust Services Criteria</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== WHAT IS SOC 3 ===== */}
-      <section className="section-padding soc3-what">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Understanding the Distinction</div>
-            <h2 className="section-title">What is <span className="highlight-text">SOC 3?</span></h2>
-            <p className="section-subtitle">
-              SOC 3 (System and Organization Controls 3) is a public-facing version of SOC 2. It is designed for general audiences, allowing companies to demonstrate compliance without revealing confidential, deeply technical audit details.
-            </p>
-          </div>
-
-          <div className="soc3-highlight-grid">
-            {highlights.map((item) => (
-              <div key={item.title} className="soc3-highlight-card">
-                <Icon name={item.icon} className="soc3-highlight-icon" />
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SOC 2 VS SOC 3 ===== */}
-      <section className="section-padding soc3-compare">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ SOC 2 vs SOC 3</div>
-            <h2 className="section-title">SOC 2 vs <span className="highlight-text">SOC 3</span></h2>
-            <p className="section-subtitle">
-              Understand the key differences between the detailed, restricted report and the publicly shareable credential.
-            </p>
-          </div>
-
-          <div className="soc3-table-wrap">
-            <table className="soc3-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>SOC 2</th>
-                  <th>SOC 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparison.map((row) => (
-                  <tr key={row.feature}>
-                    <td data-label="Feature">{row.feature}</td>
-                    <td data-label="SOC 2" className="soc3-col-soc2">{row.soc2}</td>
-                    <td data-label="SOC 3" className="soc3-col-soc3">{row.soc3}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <div className="soc3-callout"><Icon name="badge" className="soc3-callout-icon" /><span>SOC 3 = Proof of compliance you can show publicly</span></div>
-        </div>
-      </section>
-
-      {/* ===== WHY SOC 3 MATTERS ===== */}
-      <section className="section-padding soc3-impact">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ The Business Impact</div>
-            <h2 className="section-title">Why SOC 3 <span className="highlight-text">Matters</span></h2>
-            <p className="section-subtitle">
-              SOC 3 is not just compliance—it&rsquo;s a trust badge for your business. Think of SOC 3 as your &ldquo;security certificate for the public.&rdquo;
-            </p>
-          </div>
-
-          <div className="soc3-impact-grid">
-            {impacts.map((item) => (
-              <div key={item.text} className="soc3-impact-item">
-                <Icon name={item.icon} className="soc3-impact-icon" />
-                <p>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== REQUIREMENTS ===== */}
-      <section className="section-padding soc3-requirements">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Requirements</div>
-            <h2 className="section-title">Requirements for <span className="highlight-text">SOC 3</span></h2>
-            <p className="section-subtitle">
-              To get SOC 3, you must fulfill foundational security criteria.
-            </p>
-          </div>
-
-          <div className="soc3-req-grid">
-            {requirements.map((item) => (
-              <div key={item.num} className="soc3-req-card">
-                <span className="soc3-req-num">{item.num}</span>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="soc3-callout"><Icon name="arrow" className="soc3-callout-icon" /><span>No SOC 2 Type II = No SOC 3</span></div>
-        </div>
-      </section>
-
-      {/* ===== OUR PROCESS ===== */}
-      <section id="soc3-process" className="section-padding soc3-process">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ How We Work</div>
-            <h2 className="section-title">Our SOC 3 <span className="highlight-text">Process</span></h2>
-            <p className="section-subtitle">
-              A streamlined path to receiving your public trust badge.
-            </p>
-          </div>
-
-          <div className="soc3-process-grid">
-            {process.map((step) => (
-              <div key={step.num} className="soc3-step-card">
-                <span className="soc3-step-num">{step.num}</span>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== WHAT SOC 3 COVERS ===== */}
-      <section className="section-padding soc3-covers">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Scope of Assurance</div>
-            <h2 className="section-title">What SOC 3 <span className="highlight-text">Covers</span></h2>
-            <p className="section-subtitle">
-              SOC 3 is based on the same principles as SOC 2, but presented in a simplified, non-technical format:
-            </p>
-          </div>
-
-          <div className="soc3-covers-grid">
-            {covers.map((item) => (
-              <div key={item.title} className="soc3-cover-card">
-                <span className="soc3-cover-check"><Icon name="check" /></span>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== WHO SHOULD GET SOC 3 ===== */}
-      <section className="section-padding soc3-audience">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Ideal For</div>
-            <h2 className="section-title">Who Should Get <span className="highlight-text">SOC 3?</span></h2>
-          </div>
-
-          <div className="soc3-audience-list">
-            {audience.map((item) => (
-              <span key={item} className="soc3-audience-pill">
-                <span className="soc3-pill-check"><Icon name="check" /></span> {item}
-              </span>
-            ))}
-          </div>
-
-          <div className="soc3-callout"><Icon name="arrow" className="soc3-callout-icon" /><span>If you want to showcase your security publicly to drive sales, SOC 3 is ideal.</span></div>
-        </div>
-      </section>
-
-      {/* ===== WHY CHOOSE US ===== */}
-      <section className="section-padding soc3-why">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Your Compliance Partner</div>
-            <h2 className="section-title">Why Choose <span className="highlight-text">CyberSec ITC India?</span></h2>
-          </div>
-
-          <div className="soc3-why-grid">
-            {whyChoose.map((item, i) => (
-              <div key={item.title} className="soc3-why-card">
-                <span className="soc3-why-index">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CTA BANNER ===== */}
-      <section className="soc3-cta">
-        <div className="container">
-          <div className="soc3-cta-inner">
-            <h2>Turn Your Compliance into a <span>Competitive Advantage</span></h2>
-            <p>Get SOC 3 certified and proudly showcase your superior security to the world.</p>
-            <div className="soc3-cta-actions">
-              <a href="#soc3-contact" className="btn btn-orange" onClick={scrollTo('soc3-contact')}>Start Your SOC 3 Journey</a>
-              <a href="#soc3-contact" className="btn btn-glass" onClick={scrollTo('soc3-contact')}>Talk to an Expert</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== FAQS ===== */}
-      <section className="section-padding faq-section">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Common Questions</div>
-            <h2 className="section-title">SOC 3 Audit &ndash; <span className="highlight-text">FAQs</span></h2>
-            <p className="section-subtitle">
-              Quick answers on SOC 3 certification, public sharing, and prerequisites.
-            </p>
-          </div>
-
-          <div className="faq-grid">
-            {faqs.map((item, i) => (
-              <div key={i} className={`faq-item ${openFaq === i ? 'open' : ''}`}>
-                <button
-                  className="faq-question"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  aria-expanded={openFaq === i}
-                >
-                  <span>{item.q}</span>
-                  <span className="faq-toggle-icon">{openFaq === i ? '−' : '+'}</span>
-                </button>
-                <div className="faq-answer">
-                  <p>{item.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CONTACT ===== */}
-      <section id="soc3-contact" className="section-padding about-contact">
-        <div className="container">
-          <div className="section-header">
-            <div className="section-label">✦ Contact Us</div>
-            <h2 className="section-title">Contact <span className="highlight-text">Us</span></h2>
-            <p className="section-subtitle">
-              Reach out for audits, compliance, or cybersecurity consultations.
-            </p>
-          </div>
-
-          <div className="about-contact-card">
-            {formSubmitted ? (
-              <div className="form-success-box">
-                <span className="success-icon"><Icon name="check" /></span>
-                <h3>Thank you for reaching out!</h3>
-                <p>Our cybersecurity and audit team has received your inquiry and will contact you within 24 business hours.</p>
-              </div>
-            ) : (
-              <form className="inquiry-form" onSubmit={handleFormSubmit}>
-                <div className="form-row-2">
-                  <div className="form-group">
-                    <label htmlFor="soc3FullName">Full Name</label>
-                    <input id="soc3FullName" type="text" className="form-input" placeholder="Full Name" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="soc3Email">Email Address</label>
-                    <input id="soc3Email" type="email" className="form-input" placeholder="Email Address" required />
-                  </div>
-                </div>
-
-                <div className="form-row-2">
-                  <div className="form-group">
-                    <label htmlFor="soc3Phone">Phone Number</label>
-                    <input id="soc3Phone" type="tel" className="form-input" placeholder="Phone Number" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="soc3Org">Company / Organization</label>
-                    <input id="soc3Org" type="text" className="form-input" placeholder="Company / Organization" required />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="soc3Inquiry">Select an inquiry type</label>
-                  <select
-                    id="soc3Inquiry"
-                    className="form-input form-select"
-                    value={inquiryType}
-                    onChange={(e) => setInquiryType(e.target.value)}
-                    required
-                  >
-                    <option value="" disabled>Select an inquiry type</option>
-                    <option value="Audit">Audit</option>
-                    <option value="SOC L3">SOC L3 (SOC 3 Audit)</option>
-                    <option value="SOC L2">SOC L2 (SOC 2 Audit)</option>
-                    <option value="ISO 27001">ISO 27001</option>
-                    <option value="ISO 27000">ISO 27000</option>
-                    <option value="ISO 27701">ISO 27701</option>
-                    <option value="HIPAA">HIPAA Audit</option>
-                    <option value="WAPT">WAPT (Website Testing)</option>
-                    <option value="VAPT">VAPT (Application Testing)</option>
-                    <option value="AI/ML Testing">AI/ML Testing</option>
-                    <option value="IOT Testing">IOT Testing (Software only)</option>
-                    <option value="Drone Testing">Drone Testing (Software only)</option>
-                    <option value="Customized Tools">Customized Tools for testing</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="soc3Message">Describe your requirements</label>
-                  <textarea
-                    id="soc3Message"
-                    rows="4"
-                    className="form-input form-textarea"
-                    placeholder="Describe your requirements..."
-                  ></textarea>
-                </div>
-
-                <div className="form-checkbox-group">
-                  <input type="checkbox" id="soc3Subscribe" defaultChecked />
-                  <label htmlFor="soc3Subscribe">Subscribe to security &amp; compliance updates</label>
-                </div>
-
-                <button type="submit" className="btn btn-orange btn-full">
-                  Send Message
+                <button type="submit" className="btn btn-orange btn-full" disabled={formSubmitting}>
+                  {formSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             )}
@@ -900,27 +400,60 @@ function App() {
   const [activeIndustry, setActiveIndustry] = useState('healthcare')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitting, setFormSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
   const [inquiryType, setInquiryType] = useState('Audit')
   const [activeDropdown, setActiveDropdown] = useState(null)
-  const [auditTab, setAuditTab] = useState('soc')
   const [certTab, setCertTab] = useState('infosec')
   const [vaptTab, setVaptTab] = useState('web')
-  const [route, setRoute] = useState(() => window.location.hash || '#')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [showBackToTop, setShowBackToTop] = useState(false)
+  const [route, setRoute] = useState(resolveRoute)
   const partnersTrackRef = useRef(null)
   const partnerAutoplayPaused = useRef(false)
 
   const isAbout = route === '#about'
+  const isSoc2Type1 = route === '#soc2-type1'
+  const isSoc2Type2 = route === '#soc2-type2'
   const isSoc3 = route === '#soc3'
-  const isHome = !isAbout && !isSoc3
+  const isIso27001 = route === '#iso-27001'
+  const isIso27000 = route === '#iso-27000'
+  const isIso27701 = route === '#iso-27701'
+  const isCloudSecurityReview = route === '#cloud-security-review'
+  const isApiMicroservicesSecurity = route === '#api-microservices-security'
+  const isDroneSecurity = route === '#drone-security'
+  const isHipaa = route === '#hipaa'
+  const isRedTeaming = route === '#red-teaming'
+  const isWapt = route === '#wapt'
+  const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isHipaa || isRedTeaming || isWapt
+  const isHome = !isServicePage
+  const normalizedSearchQuery = searchQuery.toLowerCase().replace(/[^a-z0-9]/g, '')
+  const searchResults = normalizedSearchQuery
+    ? searchPages.filter((page) =>
+        `${page.title} ${page.keywords}`.toLowerCase().replace(/[^a-z0-9]/g, '').includes(normalizedSearchQuery)
+      )
+    : []
+
+  const submitSearch = (event) => {
+    event.preventDefault()
+    if (!searchResults.length) return
+    window.location.hash = searchResults[0].href
+    setSearchOpen(false)
+  }
 
   useEffect(() => {
-    const onHashChange = () => setRoute(window.location.hash || '#')
-    window.addEventListener('hashchange', onHashChange)
-    return () => window.removeEventListener('hashchange', onHashChange)
+    const onRouteChange = () => setRoute(resolveRoute())
+    window.addEventListener('hashchange', onRouteChange)
+    window.addEventListener('popstate', onRouteChange)
+    return () => {
+      window.removeEventListener('hashchange', onRouteChange)
+      window.removeEventListener('popstate', onRouteChange)
+    }
   }, [])
 
   useEffect(() => {
-    if (isAbout || isSoc3) {
+    if (isServicePage) {
       window.scrollTo(0, 0)
       return
     }
@@ -930,19 +463,26 @@ function App() {
     if (el) {
       requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
     }
-  }, [isAbout, isSoc3, route])
+  }, [isServicePage, route])
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 400)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const heroSlides = [
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793428295/efaa79b8-f4d8-4cf8-922b-2474f7ff6fe0_vwcd7d.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784109/45d427a4-150e-4fd0-ac54-4b7d40215646_ed0izc.png',
       alt: 'ITC India CyberSec Operations Center & Compliance Audit Lab'
     },
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793428383/42c1bcda-deea-4bd5-9392-d3c0bf4903fb_mc5jvc.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793782449/9b8ec815-ae1b-47df-8698-cebd22e223f8_idj2yo.png',
       alt: 'Cybersecurity SOC Analysts 24/7 Monitoring'
     },
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793430667/34dd04d7-8f2a-4978-8270-12a7846cbd4b_ammun2.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.png',
       alt: 'Cybersecurity Compliance & Security Shield Operations'
     }
   ]
@@ -986,82 +526,45 @@ function App() {
     return () => clearInterval(timer)
   }, [])
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
+    const form = e.currentTarget
+    setFormSubmitting(true)
+    setFormError('')
+    try {
+      await submitInquiry(form)
+      setFormSubmitted(true)
+      form.reset()
+      setTimeout(() => setFormSubmitted(false), 5000)
+    } catch (error) {
+      setFormError(error.message)
+    } finally {
+      setFormSubmitting(false)
+    }
   }
 
   const logoUrl = "https://res.cloudinary.com/didtfhfme/image/upload/v1792749521/itclogo_cg16hj.png"
 
-  const auditsMenuData = {
-    soc: [
-      {
-        title: 'SOC 2 Type I Audit',
-        desc: 'Point-in-time assessment verifying control design across AICPA Trust Services Criteria.',
-        icon: '📋',
-        href: '#audits'
-      },
-      {
-        title: 'SOC 2 Type II Audit',
-        desc: 'Evaluates operating effectiveness of security controls over a 6 to 12-month period.',
-        icon: '🛡️',
-        href: '#audits'
-      },
-      {
-        title: 'SOC 3 Assurance',
-        desc: 'General-use compliance attestation report & seal for website trust and enterprise deals.',
-        icon: '🌐',
-        href: '#soc3'
-      },
-      {
-        title: 'Continuous Monitoring',
-        desc: '24/7 automated telemetry, anomaly surveillance, and recurring audit posture tracking.',
-        icon: '📡',
-        href: '#audits'
-      }
-    ],
-    healthcare: [
-      {
-        title: 'HIPAA Security Audit',
-        desc: 'Complete audit of administrative, technical, and physical safeguards for healthcare systems.',
-        icon: '🏥',
-        href: '#audits'
-      },
-      {
-        title: 'ePHI Data Protection',
-        desc: 'Encryption, key management, API transit security, and clinical data boundary validation.',
-        icon: '🩺',
-        href: '#audits'
-      },
-      {
-        title: 'Breach Notification Readiness',
-        desc: 'Readiness evaluation ensuring compliance with statutory breach notification timelines.',
-        icon: '⚠️',
-        href: '#audits'
-      }
-    ],
-    grc: [
-      {
-        title: 'Compliance Gap Analysis',
-        desc: 'Pre-audit scoping and comprehensive roadmap to remediate missing controls.',
-        icon: '📊',
-        href: '#audits'
-      },
-      {
-        title: 'Vendor Risk Assessment',
-        desc: 'Third-party vendor due diligence, supply chain security audits, and risk scoring.',
-        icon: '🤝',
-        href: '#audits'
-      },
-      {
-        title: 'CERT-In Alignment',
-        desc: 'Security testing and compliance processes aligned with national cybersecurity SOPs.',
-        icon: '🇮🇳',
-        href: '#audits'
-      }
-    ]
-  }
+  const auditsMenuData = [
+    {
+      title: 'SOC 2 Type I Readiness',
+      desc: 'Point-in-time readiness assessment verifying control design across AICPA Trust Services Criteria.',
+      icon: '📋',
+      href: '#soc2-type1'
+    },
+    {
+      title: 'SOC 2 Type II Readiness',
+      desc: 'Readiness support for evaluating operating effectiveness of security controls over 6 to 12 months.',
+      icon: '🛡️',
+      href: '#soc2-type2'
+    },
+    {
+      title: 'SOC 3 Assurance',
+      desc: 'General-use compliance attestation report & seal for website trust and enterprise deals.',
+      icon: '🌐',
+      href: '#soc3'
+    }
+  ]
 
   const certsMenuData = {
     infosec: [
@@ -1069,19 +572,25 @@ function App() {
         title: 'ISO/IEC 27001 (ISMS)',
         desc: 'Global benchmark for managing information security policies, controls, and risk.',
         icon: '🏅',
-        href: '#certifications'
+        href: '#iso-27001'
       },
       {
         title: 'ISO/IEC 27000',
         desc: 'Foundational security architecture, vocabulary, and standards taxonomy.',
         icon: '📖',
-        href: '#certifications'
+        href: '#iso-27000'
       },
       {
         title: 'ISO/IEC 27701 (Privacy)',
         desc: 'Privacy Information Management System (PIMS) for personal data and GDPR alignment.',
-        icon: '🔒',
-        href: '#certifications'
+        icon: '🔐',
+        href: '#iso-27701'
+      },
+      {
+        title: 'Red Teaming',
+        desc: 'Objective-led adversary simulation to test people, processes, and defensive readiness.',
+        icon: '◎',
+        href: '#red-teaming'
       }
     ],
     iot: [
@@ -1103,26 +612,6 @@ function App() {
         icon: '🔬',
         href: '#itc-lab'
       }
-    ],
-    lab: [
-      {
-        title: 'ISO/IEC 17025 Accreditation',
-        desc: 'NABL-accredited test laboratory competence with globally recognized test validity.',
-        icon: '🧪',
-        href: '#itc-lab'
-      },
-      {
-        title: 'EMC, EMI & Safety Testing',
-        desc: 'Complete electromagnetic compatibility, electrical safety, and IP ingress testing.',
-        icon: '⚡',
-        href: '#itc-lab'
-      },
-      {
-        title: 'Global Export Certificates',
-        desc: 'Testing reports and compliance documentation accepted by international regulators.',
-        icon: '🌍',
-        href: '#certifications'
-      }
     ]
   }
 
@@ -1132,19 +621,19 @@ function App() {
         title: 'WAPT (Web Pentesting)',
         desc: 'Expert manual & automated vulnerability assessment aligned with OWASP Top 10.',
         icon: '💻',
-        href: '#vapt-software'
+        href: '#wapt'
       },
       {
         title: 'API & Microservices Security',
         desc: 'Deep security testing for REST, GraphQL, and microservices authorization flows.',
         icon: '⚡',
-        href: '#vapt-software'
+        href: '#api-microservices-security'
       },
       {
         title: 'Cloud Security Review',
         desc: 'Cloud posture assessments, IAM misconfigurations, and container security audits.',
         icon: '☁️',
-        href: '#vapt-software'
+        href: '#cloud-security-review'
       }
     ],
     mobile: [
@@ -1177,8 +666,8 @@ function App() {
       {
         title: 'Drone & UAS Cyber Testing',
         desc: 'Telemetry security, RF link spoofing defense, ground station penetration testing.',
-        icon: '✈️',
-        href: '#vapt-iot'
+        icon: '??',
+        href: '#drone-security'
       },
       {
         title: 'Firmware Reverse Engineering',
@@ -1256,13 +745,53 @@ function App() {
           <div className="container">
             <div className="nav-top-contact">
               <span>📧 info@itcindia.org</span>
-              <span>📞 +91 93164 73033</span>
               <span>📍 Mohali, Punjab, India</span>
             </div>
-            <div className="nav-top-social">
-              <span>🛡️ NABL Accredited | ISO/IEC 17025</span>
-              <a href="https://cybersec.itcindia.org" target="_blank" rel="noreferrer">cybersec.itcindia.org</a>
-            </div>
+            <form
+              className="nav-search"
+              role="search"
+              onSubmit={submitSearch}
+            >
+              <label className="sr-only" htmlFor="site-search">Search pages</label>
+              <input
+                id="site-search"
+                type="search"
+                value={searchQuery}
+                onChange={(event) => {
+                  setSearchQuery(event.target.value)
+                  setSearchOpen(true)
+                }}
+                onFocus={() => setSearchOpen(true)}
+                placeholder="Search pages..."
+                autoComplete="off"
+                aria-controls="site-search-results"
+                aria-expanded={searchOpen && Boolean(searchQuery.trim())}
+              />
+              <button type="submit" aria-label="Search">
+                <Icon name="search" />
+                <span>Search</span>
+              </button>
+              {searchOpen && searchQuery.trim() && (
+                <ul id="site-search-results" className="nav-search-results" aria-label="Search suggestions">
+                  {searchResults.length ? searchResults.map((page) => (
+                    <li key={page.href}>
+                      <a
+                        href={page.href}
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={() => {
+                          setSearchOpen(false)
+                          setSearchQuery('')
+                        }}
+                      >
+                        {page.title}
+                      </a>
+                    </li>
+                  )) : (
+                    <li className="nav-search-empty">No matching pages found</li>
+                  )}
+                </ul>
+              )}
+            </form>
           </div>
         </div>
 
@@ -1311,35 +840,8 @@ function App() {
                   <span className="dropdown-arrow">▾</span>
                 </button>
                 <div className="accorp-mega-dropdown">
-                  <div className="accorp-tabs-row">
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${auditTab === 'soc' ? 'active' : ''}`}
-                      onClick={() => setAuditTab('soc')}
-                      onMouseEnter={() => setAuditTab('soc')}
-                    >
-                      SOC &amp; Attestation
-                    </button>
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${auditTab === 'healthcare' ? 'active' : ''}`}
-                      onClick={() => setAuditTab('healthcare')}
-                      onMouseEnter={() => setAuditTab('healthcare')}
-                    >
-                      Healthcare &amp; Privacy
-                    </button>
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${auditTab === 'grc' ? 'active' : ''}`}
-                      onClick={() => setAuditTab('grc')}
-                      onMouseEnter={() => setAuditTab('grc')}
-                    >
-                      Compliance &amp; GRC
-                    </button>
-                  </div>
-
                   <div className="accorp-cards-grid">
-                    {auditsMenuData[auditTab].map((item, idx) => (
+                    {auditsMenuData.map((item, idx) => (
                       <a
                         key={idx}
                         href={item.href}
@@ -1370,6 +872,12 @@ function App() {
                     </a>
                   </div>
                 </div>
+              </li>
+
+              <li>
+                <a href="#hipaa" onClick={() => setMobileMenuOpen(false)}>
+                  HIPAA
+                </a>
               </li>
 
               {/* Certifications Mega Dropdown (Accorp Style) */}
@@ -1403,14 +911,6 @@ function App() {
                       onMouseEnter={() => setCertTab('iot')}
                     >
                       IoT &amp; Hardware
-                    </button>
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${certTab === 'lab' ? 'active' : ''}`}
-                      onClick={() => setCertTab('lab')}
-                      onMouseEnter={() => setCertTab('lab')}
-                    >
-                      Lab Accreditation
                     </button>
                   </div>
 
@@ -1524,8 +1024,7 @@ function App() {
                 </div>
               </li>
 
-              <li><a href="#vapt-iot" onClick={() => setMobileMenuOpen(false)}>Drone Testing</a></li>
-              <li><a href="#itc-lab" onClick={() => setMobileMenuOpen(false)}>Lab Services</a></li>
+              <li><a href="#drone-security" onClick={() => setMobileMenuOpen(false)}>Drone Testing</a></li>
               <li><a href="#contact" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>Get Started</a></li>
             </ul>
 
@@ -1541,7 +1040,18 @@ function App() {
       </nav>
 
       {isAbout && <AboutPage />}
+      {isSoc2Type1 && <Soc2Type1Page />}
+      {isSoc2Type2 && <Soc2Type2Page />}
       {isSoc3 && <Soc3Page />}
+      {isIso27001 && <Iso27001Page />}
+      {isIso27000 && <Iso27000Page />}
+      {isIso27701 && <Iso27701Page />}
+      {isCloudSecurityReview && <CloudSecurityReviewPage />}
+      {isApiMicroservicesSecurity && <ApiMicroservicesSecurityPage />}
+      {isDroneSecurity && <DroneSecurityPage />}
+      {isHipaa && <HipaaPage />}
+      {isRedTeaming && <RedTeamingPage />}
+      {isWapt && <WaptPage />}
 
       {isHome && (
       <>
@@ -1597,10 +1107,6 @@ function App() {
 
         <div className="container">
           <div className="hero-content">
-            <div className="hero-badge">
-              <span className="badge-pulse-dot"></span>
-              <span>24/7 Security Operations Center Active</span>
-            </div>
 
             <h1 className="hero-title">
               <span className="highlight">Cybersecurity</span> &amp; Compliance<br />
@@ -1642,7 +1148,7 @@ function App() {
       <section id="audits" className="section-padding audits-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Attestation &amp; Verification</div>
+            <div className="section-label">Attestation &amp; Verification</div>
             <h2 className="section-title">AUDITS - <span className="highlight-text">SOC &amp; HIPAA</span></h2>
             <p className="section-subtitle">
               Rigorous audits providing high-level assurance regarding controls, data protection, and operational safeguards.
@@ -1665,7 +1171,11 @@ function App() {
                 <li><span className="check-icon">✓</span> Type II (Operating Effectiveness over 6–12 Months)</li>
                 <li><span className="check-icon">✓</span> Trust Services Criteria: Security, Confidentiality &amp; Privacy</li>
               </ul>
-              <a href="#soc3" className="audit-inline-link">Get SOC 3 Trust Badge →</a>
+              <div className="audit-inline-links">
+                <a href="#soc2-type1" className="audit-inline-link">SOC 2 Type I Readiness →</a>
+                <a href="#soc2-type2" className="audit-inline-link">SOC 2 Type II Readiness →</a>
+                <a href="#soc3" className="audit-inline-link">Get SOC 3 Trust Badge →</a>
+              </div>
               <a href="#contact" className="btn btn-outline-blue">Request SOC Audit →</a>
             </div>
 
@@ -1684,6 +1194,9 @@ function App() {
                 <li><span className="check-icon">✓</span> Protected Health Information (PHI) &amp; ePHI Security</li>
                 <li><span className="check-icon">✓</span> Breach Notification Rule &amp; Incident Readiness</li>
               </ul>
+              <div className="audit-inline-links">
+                <a href="#hipaa" className="audit-inline-link">Explore HIPAA Compliance</a>
+              </div>
               <a href="#contact" className="btn btn-orange">Request HIPAA Audit →</a>
             </div>
           </div>
@@ -1694,7 +1207,7 @@ function App() {
       <section id="vapt-iot" className="section-padding iot-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Connected Devices Security</div>
+            <div className="section-label">Connected Devices Security</div>
             <h2 className="section-title">VAPT – <span className="highlight-text">IoT Device Security</span></h2>
             <p className="section-subtitle">
               Secure IoT ecosystems against real-world cyber threats with specialized lab testing and compliance verification.
@@ -1789,7 +1302,7 @@ function App() {
       <section id="vapt-software" className="section-padding software-vapt-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Digital Ecosystem Defense</div>
+            <div className="section-label">Digital Ecosystem Defense</div>
             <h2 className="section-title">VAPT – <span className="highlight-text">SOFTWARE TESTING</span></h2>
             <p className="section-subtitle">
               ITC India's Software VAPT division safeguards modern digital ecosystems by combining expert-led manual assessments with automated testing frameworks, ensuring applications remain secure, compliant, and resilient against evolving threats.
@@ -1840,7 +1353,7 @@ function App() {
                 </p>
               </div>
 
-              <a href="https://cybersec.itcindia.org/wapt" target="_blank" rel="noreferrer" className="btn btn-blue">
+              <a href="#wapt" className="btn btn-blue">
                 Know More →
               </a>
             </div>
@@ -1889,7 +1402,7 @@ function App() {
       <section id="industries" className="section-padding industries-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Sector-Specific Protection</div>
+            <div className="section-label">Sector-Specific Protection</div>
             <h2 className="section-title">Industry Solutions &mdash; <span className="highlight-text">Tailored Security</span></h2>
             <p className="section-subtitle">
               Different industries face unique cyber threats. Our specialized solutions address the specific security challenges of your sector.
@@ -2048,7 +1561,7 @@ function App() {
               alt="ITC India CyberSec"
               className="certs-logo"
             />
-            <div className="section-label">✦ Global Accreditations</div>
+            <div className="section-label">Global Accreditations</div>
             <h2 className="section-title">Our <span className="highlight-text">Certifications</span></h2>
             <p className="section-subtitle">
               We comply with globally recognized information security and privacy standards to ensure trust, compliance, and secure digital operations for our clients.
@@ -2056,13 +1569,13 @@ function App() {
           </div>
 
           <div className="cert-cards-grid">
-            <a href="https://cybersec.itcindia.org/iso-27001" target="_blank" rel="noreferrer" className="cert-card">
+            <a href="#iso-27001" className="cert-card">
               <div className="cert-tag blue-tag">Information Security</div>
               <h3>ISO/IEC 27001</h3>
               <p>Establishes best practices for managing and protecting sensitive business and customer information.</p>
             </a>
 
-            <a href="https://cybersec.itcindia.org/iso-27000" target="_blank" rel="noreferrer" className="cert-card">
+            <a href="#iso-27000" className="cert-card">
               <div className="cert-tag orange-tag">Security Overview</div>
               <h3>ISO/IEC 27000</h3>
               <p>Defines the vocabulary and foundational concepts for the entire ISO 27000 family of information security standards.</p>
@@ -2074,7 +1587,7 @@ function App() {
               <p>Defines cybersecurity requirements for consumer IoT devices to prevent common security threats.</p>
             </a>
 
-            <a href="https://cybersec.itcindia.org/iso-27701" target="_blank" rel="noreferrer" className="cert-card">
+            <a href="#iso-27701" className="cert-card">
               <div className="cert-tag purple-tag">Privacy Management</div>
               <h3>ISO/IEC 27701</h3>
               <p>Enhances privacy governance by defining controls for personal data protection and compliance.</p>
@@ -2087,7 +1600,7 @@ function App() {
       <section id="partners" className="section-padding partners-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Our Network</div>
+            <div className="section-label">Our Network</div>
             <h2 className="section-title">Our <span className="highlight-text">Trusted Partners</span></h2>
           </div>
 
@@ -2144,7 +1657,7 @@ function App() {
       <section id="testimonials" className="section-padding testimonials-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Client Endorsements</div>
+            <div className="section-label">Client Endorsements</div>
             <h2 className="section-title">Globally Trusted by <span className="highlight-text">Leading Companies</span></h2>
             <p className="section-subtitle">
               Read how our cybersecurity audits and certifications helped our partners accelerate compliance and resilience.
@@ -2201,7 +1714,7 @@ function App() {
       <section id="itc-lab" className="section-padding lab-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Laboratory Infrastructure</div>
+            <div className="section-label">Laboratory Infrastructure</div>
             <h2 className="section-title">ITC India <span className="highlight-text">Pvt. Ltd.</span></h2>
             <p className="section-subtitle">
               NABL-accredited testing &amp; calibration laboratory providing end-to-end solutions in electrical, electronic, photometric, and solar equipment testing.
@@ -2292,7 +1805,7 @@ function App() {
       <section id="faq" className="section-padding faq-section">
         <div className="container">
           <div className="section-header">
-            <div className="section-label">✦ Common Questions</div>
+            <div className="section-label">Common Questions</div>
             <h2 className="section-title">Frequently Asked <span className="highlight-text">Questions</span></h2>
             <p className="section-subtitle">
               Clear answers on audits, VAPT testing, SOC certifications, and security processes.
@@ -2331,7 +1844,7 @@ function App() {
         <div className="container">
           <div className="contact-wrapper">
             <div className="contact-info-side">
-              <div className="section-label">✦ Get In Touch</div>
+              <div className="section-label">Get In Touch</div>
               <h2>Contact Us</h2>
               <p className="contact-lead">
                 Reach out for audits, compliance, or cybersecurity consultations. Our NABL-accredited team is ready to evaluate your requirements.
@@ -2385,6 +1898,7 @@ function App() {
                     <label htmlFor="inquiry-select">Select an inquiry type *</label>
                     <select
                       id="inquiry-select"
+                      name="inquiryType"
                       className="form-input form-select"
                       value={inquiryType}
                       onChange={(e) => setInquiryType(e.target.value)}
@@ -2410,39 +1924,43 @@ function App() {
                   <div className="form-row-2">
                     <div className="form-group">
                       <label htmlFor="fullName">Full Name *</label>
-                      <input id="fullName" type="text" className="form-input" placeholder="e.g. Rahul Sharma" required />
+                      <input id="fullName" name="fullName" type="text" className="form-input" placeholder="e.g. Rahul Sharma" required />
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="workEmail">Work Email *</label>
-                      <input id="workEmail" type="email" className="form-input" placeholder="name@company.com" required />
+                      <input id="workEmail" name="email" type="email" className="form-input" placeholder="name@company.com" required />
                     </div>
                   </div>
 
                   <div className="form-row-2">
                     <div className="form-group">
                       <label htmlFor="phoneNum">Phone Number *</label>
-                      <input id="phoneNum" type="tel" className="form-input" placeholder="+91 98765 43210" required />
+                      <input id="phoneNum" name="phone" type="tel" className="form-input" placeholder="+91 98765 43210" required />
                     </div>
 
                     <div className="form-group">
                       <label htmlFor="orgName">Organization / Company *</label>
-                      <input id="orgName" type="text" className="form-input" placeholder="Company Name" required />
+                      <input id="orgName" name="organization" type="text" className="form-input" placeholder="Company Name" required />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="message">Project Scope or Message</label>
-                    <textarea id="message" rows="3" className="form-input form-textarea" placeholder="Describe your systems, timeline, or standards required..."></textarea>
+                    <textarea id="message" name="message" rows="3" className="form-input form-textarea" placeholder="Describe your systems, timeline, or standards required..."></textarea>
                   </div>
 
                   <div className="form-checkbox-group">
-                    <input type="checkbox" id="subscribe" defaultChecked />
+                    <input type="checkbox" id="subscribe" name="subscribe" value="yes" defaultChecked />
                     <label htmlFor="subscribe">Subscribe to security &amp; compliance updates</label>
                   </div>
 
-                  <button type="submit" className="btn btn-orange btn-full">
-                    Send Message →
+                  <input type="hidden" name="formSource" value="Home Contact" />
+
+                  {formError && <p className="form-error" role="alert">{formError}</p>}
+
+                  <button type="submit" className="btn btn-orange btn-full" disabled={formSubmitting}>
+                    {formSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               )}
@@ -2473,58 +1991,89 @@ function App() {
                 Elevating global security standards through advanced VAPT, IoT security, and comprehensive compliance frameworks. Your trusted partner in digital resilience.
               </p>
               <div className="footer-social">
-                <a href="https://cybersec.itcindia.org" target="_blank" rel="noreferrer" aria-label="Website">🌐</a>
-                <a href="https://www.itcindia.org" target="_blank" rel="noreferrer" aria-label="ITC India">🏛️</a>
-                <a href="mailto:info@itcindia.org" aria-label="Email">✉️</a>
-                <a href="tel:+919316473033" aria-label="Phone">📞</a>
+                <a href="mailto:damnart.seo@gmail.com,devkumar.swipe@gmail.com" aria-label="Email damnart.seo@gmail.com and devkumar.swipe@gmail.com">
+                  <svg className="footer-email-logo" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#4285F4" d="M3 7 5.5 5v13H3z" />
+                    <path fill="#EA4335" d="m3 7 2.5-2 6.5 5-2.2 2z" />
+                    <path fill="#FBBC04" d="m12 10 6.5-5L21 7l-6.8 5z" />
+                    <path fill="#34A853" d="M18.5 9 21 7v11h-2.5z" />
+                  </svg>
+                </a>
+                <a href="tel:+919316473033" aria-label="Phone">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 3.18 2 2 0 0 1 4.08 1h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.05 8.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.69A2 2 0 0 1 22 16.92Z" /></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/cyber-sec-ai/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <svg className="footer-linkedin-logo" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.67V9.4h2.67ZM7 8.22a1.55 1.55 0 1 1 .02-3.1A1.55 1.55 0 0 1 7 8.22ZM18.33 18h-2.66v-4.18c0-1-.02-2.3-1.4-2.3-1.4 0-1.61 1.09-1.61 2.22V18H10V9.4h2.55v1.17h.04c.35-.67 1.22-1.39 2.51-1.39 2.69 0 3.19 1.77 3.19 4.07Z" />
+                  </svg>
+                </a>
               </div>
             </div>
 
             <div className="footer-column">
               <h4>Solutions</h4>
               <ul>
-                <li><a href="https://cybersec.itcindia.org/wapt" target="_blank" rel="noreferrer">Web Testing (WAPT)</a></li>
-                <li><a href="https://cybersec.itcindia.org/vapt" target="_blank" rel="noreferrer">Application Testing (AST)</a></li>
-                <li><a href="https://cybersec.itcindia.org/iot-security" target="_blank" rel="noreferrer">IoT Security</a></li>
-                <li><a href="https://cybersec.itcindia.org/ai-ml-security" target="_blank" rel="noreferrer">AI/ML Security</a></li>
-                <li><a href="https://cybersec.itcindia.org/drone-testing" target="_blank" rel="noreferrer">Drone Testing</a></li>
+                <li><a href="#wapt">Web Testing (WAPT)</a></li>
+                <li><a href="#api-microservices-security">API &amp; Microservices Security</a></li>
+                <li><a href="#red-teaming">Red Teaming</a></li>
+                <li><a href="#cloud-security-review">Cloud Security Review</a></li>
               </ul>
             </div>
 
             <div className="footer-column">
               <h4>Frameworks</h4>
               <ul>
-                <li><a href="https://cybersec.itcindia.org/hipaa-audit" target="_blank" rel="noreferrer">HIPAA</a></li>
-                <li><a href="https://cybersec.itcindia.org/soc-audit" target="_blank" rel="noreferrer">SOC 2 Audit</a></li>
-                <li><a href="https://cybersec.itcindia.org/soc3-audit" target="_blank" rel="noreferrer">SOC 3 Audit</a></li>
-                <li><a href="https://cybersec.itcindia.org/iso-27001" target="_blank" rel="noreferrer">ISO 27001</a></li>
-                <li><a href="https://cybersec.itcindia.org/iso-27000" target="_blank" rel="noreferrer">ISO 27000</a></li>
-                <li><a href="https://cybersec.itcindia.org/iso-27701" target="_blank" rel="noreferrer">ISO 27701</a></li>
+                <li><a href="#hipaa">HIPAA</a></li>
+                <li><a href="#soc2-type1">SOC 2 Type I Readiness</a></li>
+                <li><a href="#soc2-type2">SOC 2 Type II Readiness</a></li>
+                <li><a href="#soc3">SOC 3 Readiness</a></li>
+                <li><a href="#iso-27001">ISO 27001</a></li>
+                <li><a href="#iso-27000">ISO 27000</a></li>
+                <li><a href="#iso-27701">ISO 27701</a></li>
               </ul>
             </div>
 
             <div className="footer-column">
-              <h4>Company</h4>
+              <h4>Company &amp; Contact</h4>
               <ul>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#testimonials">Trust &amp; Safety</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="https://cybersec.itcindia.org/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a></li>
-                <li><a href="https://www.itcindia.org/terms-conditions/" target="_blank" rel="noreferrer">Terms &amp; Conditions</a></li>
+                <li><a href="tel:+919316473033">Phone: +91 93164 73033</a></li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
             <p>© 2026 CyberSec. All Rights Reserved.</p>
-            <div className="footer-badges">
-              <a href="https://www.itcindia.org/terms-conditions/" target="_blank" rel="noreferrer" className="footer-badge">Terms &amp; Conditions</a>
-              <span className="footer-badge">🏛️ NABL Accredited Lab</span>
-              <span className="footer-badge">🛡️ ISO/IEC 17025 Certified</span>
-            </div>
           </div>
         </div>
       </footer>
+
+      {/* ===== FLOATING QUICK ACTIONS ===== */}
+      <div className="floating-actions" aria-label="Quick actions">
+        {showBackToTop && (
+          <button
+            type="button"
+            className="floating-btn floating-btn-top visible"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
+          >
+            <Icon name="arrowUp" />
+            <span className="floating-label">Back to top</span>
+          </button>
+        )}
+        <a
+          className="floating-btn floating-btn-whatsapp"
+          href="https://wa.me/917589783899"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Chat with us on WhatsApp"
+        >
+          <Icon name="whatsapp" />
+          <span className="floating-label">WhatsApp</span>
+        </a>
+      </div>
     </>
   )
 }
