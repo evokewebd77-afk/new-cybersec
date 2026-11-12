@@ -14,6 +14,7 @@ import RedTeamingPage from './pages/RedTeamingPage'
 import WaptPage from './pages/WaptPage'
 import ApiMicroservicesSecurityPage from './pages/ApiMicroservicesSecurityPage'
 import DroneSecurityPage from './pages/DroneSecurityPage'
+import IotSecurityPage from './pages/IotSecurityPage'
 
 const pathRoutes = {
   '/about': '#about',
@@ -37,6 +38,10 @@ const pathRoutes = {
   '/drone-security-testing': '#drone-security',
   '/drone-testing': '#drone-security',
   '/uas-security': '#drone-security',
+  '/iot-security': '#iot-security',
+  '/iot-security-testing': '#iot-security',
+  '/iot-device-pentesting': '#iot-security',
+  '/iot-device-testing': '#iot-security',
 }
 
 const resolveRoute = () => {
@@ -89,6 +94,7 @@ const searchPages = [
   { title: 'Cloud Security Review', href: '#cloud-security-review', keywords: 'cloud security review aws azure gcp infrastructure iam configuration assessment cloud penetration testing' },
   { title: 'API & Microservices Security Testing', href: '#api-microservices-security', keywords: 'api microservices security testing rest graphql oauth authorization api gateway business logic' },
   { title: 'Drone Security Testing', href: '#drone-security', keywords: 'drone uav uas security testing firmware rf communication ground control gps spoofing iot' },
+  { title: 'IoT Security Testing', href: '#iot-security', keywords: 'iot connected devices security testing firmware hardware etsi en 303 645 wireless cloud platform' },
   { title: 'HIPAA Compliance', href: '#hipaa', keywords: 'hipaa healthcare phi patient data security audit' },
   { title: 'Web Application Testing (WAPT)', href: '#wapt', keywords: 'web website penetration testing' },
   { title: 'Audits & Compliance', href: '#audits', keywords: 'hipaa healthcare grc assessment' },
@@ -412,6 +418,7 @@ function App() {
   const [route, setRoute] = useState(resolveRoute)
   const partnersTrackRef = useRef(null)
   const partnerAutoplayPaused = useRef(false)
+  const mobileNavRef = useRef(null)
 
   const isAbout = route === '#about'
   const isSoc2Type1 = route === '#soc2-type1'
@@ -423,10 +430,11 @@ function App() {
   const isCloudSecurityReview = route === '#cloud-security-review'
   const isApiMicroservicesSecurity = route === '#api-microservices-security'
   const isDroneSecurity = route === '#drone-security'
+  const isIotSecurity = route === '#iot-security'
   const isHipaa = route === '#hipaa'
   const isRedTeaming = route === '#red-teaming'
   const isWapt = route === '#wapt'
-  const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isHipaa || isRedTeaming || isWapt
+  const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isIotSecurity || isHipaa || isRedTeaming || isWapt
   const isHome = !isServicePage
   const normalizedSearchQuery = searchQuery.toLowerCase().replace(/[^a-z0-9]/g, '')
   const searchResults = normalizedSearchQuery
@@ -471,6 +479,21 @@ function App() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!mobileMenuOpen || !activeDropdown) return
+    if (!window.matchMedia('(max-width: 768px)').matches) return
+    const nav = mobileNavRef.current
+    const panel = nav?.querySelector('.nav-item-dropdown.active .accorp-mega-dropdown')
+    if (!nav || !panel) return
+    const navRect = nav.getBoundingClientRect()
+    const panelRect = panel.getBoundingClientRect()
+    const panelTop = panelRect.top - navRect.top
+    const panelBottom = panelRect.bottom - navRect.top
+    if (panelTop < 4 || panelBottom > nav.clientHeight - 4) {
+      nav.scrollTo({ top: nav.scrollTop + panelTop - 8, behavior: 'smooth' })
+    }
+  }, [activeDropdown, certTab, vaptTab, mobileMenuOpen])
 
   const heroSlides = [
     {
@@ -592,26 +615,6 @@ function App() {
         icon: '◎',
         href: '#red-teaming'
       }
-    ],
-    iot: [
-      {
-        title: 'ETSI EN 303 645 (IoT)',
-        desc: 'Global cybersecurity baseline standard and certification for connected smart devices.',
-        icon: '📡',
-        href: '#certifications'
-      },
-      {
-        title: 'OWASP IoT Top 10',
-        desc: 'Vulnerability testing covering hardware interfaces, firmware, and cloud backends.',
-        icon: '🔌',
-        href: '#vapt-iot'
-      },
-      {
-        title: 'Connected Products Lab',
-        desc: 'Specialized testing workflows for consumer IoT, gateways, and smart hardware.',
-        icon: '🔬',
-        href: '#itc-lab'
-      }
     ]
   }
 
@@ -636,44 +639,12 @@ function App() {
         href: '#cloud-security-review'
       }
     ],
-    mobile: [
-      {
-        title: 'Android Security (AST)',
-        desc: 'Static & dynamic APK reverse engineering, intent manipulation, and storage testing.',
-        icon: '🤖',
-        href: '#vapt-software'
-      },
-      {
-        title: 'iOS App Security',
-        desc: 'IPA binary inspection, Keychain security, memory analysis, and ATS validation.',
-        icon: '🍏',
-        href: '#vapt-software'
-      },
-      {
-        title: 'Secure Code Auditing',
-        desc: 'Automated + expert manual source code reviews identifying hidden business logic flaws.',
-        icon: '🔐',
-        href: '#vapt-software'
-      }
-    ],
     iot: [
       {
         title: 'IoT Device Pentesting',
-        desc: 'Hardware bus probing (UART/JTAG/I2C), radio protocols (BLE/Zigbee), and sensors.',
+        desc: 'Hardware, firmware, wireless, application, API, and cloud security testing for connected devices.',
         icon: '🔬',
-        href: '#vapt-iot'
-      },
-      {
-        title: 'Drone & UAS Cyber Testing',
-        desc: 'Telemetry security, RF link spoofing defense, ground station penetration testing.',
-        icon: '??',
-        href: '#drone-security'
-      },
-      {
-        title: 'Firmware Reverse Engineering',
-        desc: 'Binary extraction, cryptographic key discovery, and embedded vulnerability patching.',
-        icon: '💾',
-        href: '#vapt-iot'
+        href: '#iot-security'
       }
     ]
   }
@@ -744,7 +715,7 @@ function App() {
         <div className="nav-top-bar">
           <div className="container">
             <div className="nav-top-contact">
-              <span>📧 info@itcindia.org</span>
+              <span>📧 cybersec@itcindia.org</span>
               <span>📍 Mohali, Punjab, India</span>
             </div>
             <form
@@ -809,7 +780,7 @@ function App() {
               </div>
             </a>
 
-            <ul className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+            <ul ref={mobileNavRef} className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
               <li>
                 <a
                   href="#about"
@@ -904,14 +875,6 @@ function App() {
                     >
                       Information Security
                     </button>
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${certTab === 'iot' ? 'active' : ''}`}
-                      onClick={() => setCertTab('iot')}
-                      onMouseEnter={() => setCertTab('iot')}
-                    >
-                      IoT &amp; Hardware
-                    </button>
                   </div>
 
                   <div className="accorp-cards-grid">
@@ -971,14 +934,6 @@ function App() {
                       onMouseEnter={() => setVaptTab('web')}
                     >
                       Web &amp; APIs
-                    </button>
-                    <button
-                      type="button"
-                      className={`accorp-tab-btn ${vaptTab === 'mobile' ? 'active' : ''}`}
-                      onClick={() => setVaptTab('mobile')}
-                      onMouseEnter={() => setVaptTab('mobile')}
-                    >
-                      Mobile Apps
                     </button>
                     <button
                       type="button"
@@ -1049,6 +1004,7 @@ function App() {
       {isCloudSecurityReview && <CloudSecurityReviewPage />}
       {isApiMicroservicesSecurity && <ApiMicroservicesSecurityPage />}
       {isDroneSecurity && <DroneSecurityPage />}
+      {isIotSecurity && <IotSecurityPage />}
       {isHipaa && <HipaaPage />}
       {isRedTeaming && <RedTeamingPage />}
       {isWapt && <WaptPage />}
@@ -1216,39 +1172,51 @@ function App() {
 
           <div className="iot-overview-grid">
             <div className="iot-info-card">
+              <img
+                className="iot-card-image"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794473272/4df0a98f-9727-4e80-895f-424d6d5bfdf9_nkb0ks.png"
+                alt="Connected IoT devices including cameras, smart appliances, and wearables"
+              />
               <div className="iot-card-header">
-                <span className="iot-icon"><Icon name="devices" /></span>
                 <h4>DEVICES COVERED</h4>
               </div>
               <div className="device-tags">
-                <span className="device-pill"><Icon name="drone" className="pill-icon" /> Drones</span>
-                <span className="device-pill"><Icon name="wifi" className="pill-icon" /> IoT Devices</span>
+                <span className="device-pill">Drones</span>
+                <span className="device-pill">IoT Devices</span>
               </div>
             </div>
 
             <div className="iot-info-card">
+              <img
+                className="iot-card-image"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794474014/99e8c616-2049-428e-b9a1-676d9e9937c1_m5frqa.png"
+                alt="IoT security specialist assessing connected devices"
+              />
               <div className="iot-card-header">
-                <span className="iot-icon"><Icon name="document" /></span>
                 <h4>STANDARD ALIGNMENT</h4>
               </div>
               <p className="iot-card-text">
                 Device security assessments follow globally recognized cybersecurity standards to ensure compliance, resilience, and secure-by-design connected products.
               </p>
               <div className="check-tag-list">
-                <span className="check-tag"><Icon name="check" className="check-icon" /> ETSI EN 303 645</span>
-                <span className="check-tag"><Icon name="check" className="check-icon" /> OWASP Top 10 for IoT</span>
+                <span className="check-tag">ETSI EN 303 645</span>
+                <span className="check-tag">OWASP Top 10 for IoT</span>
               </div>
             </div>
 
             <div className="iot-info-card">
+              <img
+                className="iot-card-image"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.png"
+                alt="Cybersecurity analysts monitoring threats and protecting connected systems"
+              />
               <div className="iot-card-header">
-                <span className="iot-icon"><Icon name="target" /></span>
                 <h4>CORE FOCUS AREAS</h4>
               </div>
               <div className="check-tag-list vertical">
-                <span className="check-tag"><Icon name="check" className="check-icon" /> Common security vulnerabilities</span>
-                <span className="check-tag"><Icon name="check" className="check-icon" /> Authentication &amp; access control</span>
-                <span className="check-tag"><Icon name="check" className="check-icon" /> Secure communications &amp; OTA updates</span>
+                <span className="check-tag">Common security vulnerabilities</span>
+                <span className="check-tag">Authentication &amp; access control</span>
+                <span className="check-tag">Secure communications &amp; OTA updates</span>
               </div>
             </div>
           </div>
@@ -1620,11 +1588,11 @@ function App() {
 
             <div className="partners-grid" ref={partnersTrackRef} aria-label="Trusted partners">
               {[
-              { name: 'Damnart', logo: 'https://www.damnart.com/wp-content/uploads/elementor/thumbs/Damn-Art-Logo-Final-Only-Logo-r6dasn0nfh4nzs4a4fd97txlvs2437uw1zu2i0825k.png' },
+              { name: 'Damnart', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/c_crop,w_666,h_366,x_144,y_364/v1781845919/DAMNART_LOGO_1_xjilzi.png' },
               { name: 'Evoke AI', logo: 'https://evokeaisolutions.com/assets/evoke.webp' },
               { name: 'SFT', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1779180796/sft_fl24sf.webp' },
-              { name: 'Aivara' },
-              { name: 'Biiot' },
+              { name: 'Aivara', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794467267/unnamed_r91bbe.png' },
+              { name: 'Biiot', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794468245/unnamed_tyaekp.png' },
               { name: 'ICCRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.png' }
             ].map((partner) => (
               <div className="partner-wordmark" key={partner.name}>
@@ -1852,7 +1820,7 @@ function App() {
 
               <div className="contact-details-list">
                 <div className="contact-detail-row">
-                  <span className="detail-icon">🏢</span>
+                  <span className="detail-icon"><Icon name="building" /></span>
                   <div>
                     <h4>Headquarters</h4>
                     <p>ITC India Pvt. Ltd., Mohali, Punjab, India</p>
@@ -1860,7 +1828,7 @@ function App() {
                 </div>
 
                 <div className="contact-detail-row">
-                  <span className="detail-icon">📧</span>
+                  <span className="detail-icon"><Icon name="mail" /></span>
                   <div>
                     <h4>Email Inquiries</h4>
                     <p><a href="mailto:info@itcindia.org">info@itcindia.org</a></p>
@@ -1868,7 +1836,7 @@ function App() {
                 </div>
 
                 <div className="contact-detail-row">
-                  <span className="detail-icon">📞</span>
+                  <span className="detail-icon"><Icon name="phone" /></span>
                   <div>
                     <h4>Call Support</h4>
                     <p><a href="tel:+919316473033">+91 93164 73033</a></p>
@@ -1877,7 +1845,7 @@ function App() {
               </div>
 
               <div className="contact-badge-box">
-                <span className="shield-icon-small">🛡️</span>
+                <span className="shield-icon-small"><Icon name="shield" /></span>
                 <span>All assessments conducted under strict bilateral NDAs with confidential handling.</span>
               </div>
             </div>
@@ -1991,7 +1959,7 @@ function App() {
                 Elevating global security standards through advanced VAPT, IoT security, and comprehensive compliance frameworks. Your trusted partner in digital resilience.
               </p>
               <div className="footer-social">
-                <a href="mailto:damnart.seo@gmail.com,devkumar.swipe@gmail.com" aria-label="Email damnart.seo@gmail.com and devkumar.swipe@gmail.com">
+                <a href="mailto:damnart.seo@gmail.com,devkumar.swipe@gmail.com,cybersec@itcindia.org" aria-label="Email damnart.seo@gmail.com, devkumar.swipe@gmail.com, and cybersec@itcindia.org">
                   <svg className="footer-email-logo" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill="#4285F4" d="M3 7 5.5 5v13H3z" />
                     <path fill="#EA4335" d="m3 7 2.5-2 6.5 5-2.2 2z" />

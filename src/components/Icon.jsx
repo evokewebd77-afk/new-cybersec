@@ -1,5 +1,11 @@
 function Icon({ name, className = '' }) {
   const icons = {
+    building: (
+      <>
+        <path d="M3 21h18M5 21V5l7-3v19M19 21V9l-7-4" />
+        <path d="M8 7h1M8 11h1M8 15h1M15 11h1M15 15h1" />
+      </>
+    ),
     devices: (
       <>
         <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -13,6 +19,15 @@ function Icon({ name, className = '' }) {
         <path d="M14 2v6h6" />
         <path d="M16 13H8M16 17H8M10 9H8" />
       </>
+    ),
+    mail: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </>
+    ),
+    phone: (
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 3.18 2 2 0 0 1 4.08 1h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.05 8.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.57 2.8.69A2 2 0 0 1 22 16.92Z" />
     ),
     target: (
       <>

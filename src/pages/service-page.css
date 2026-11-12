@@ -384,6 +384,27 @@
   margin-bottom: 0;
 }
 
+.svc-section-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-xl);
+  margin-top: 28px;
+}
+
+.svc-iot-intro-grid {
+  margin-top: 28px;
+}
+
+.svc-iot-intro-media {
+  align-self: stretch;
+}
+
+.svc-iot-intro-media img {
+  aspect-ratio: 4 / 3;
+  object-position: center;
+}
+
 .svc-overview-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
@@ -526,6 +547,30 @@
   box-shadow: var(--shadow-md);
 }
 
+.svc-etsi-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.svc-etsi-image {
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.svc-etsi-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  object-fit: cover;
+  object-position: center;
+}
+
 .svc-deliverables-card .svc-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px 26px;
@@ -621,6 +666,15 @@
     grid-template-columns: 1fr;
   }
 
+  .svc-etsi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .svc-etsi-image img {
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+  }
+
   .svc-deliverables-card .svc-list {
     grid-template-columns: 1fr;
   }
@@ -628,8 +682,8 @@
 
 @media (max-width: 768px) {
   .svc-hero {
-    padding-top: 96px;
-    padding-bottom: 48px;
+    padding-top: 128px;
+    padding-bottom: 56px;
   }
 
   .svc-visual-media {
@@ -641,7 +695,7 @@
   }
 
   .svc-hero-overlay {
-    background: linear-gradient(180deg, rgba(8, 18, 36, 0.95) 0%, rgba(8, 18, 36, 0.86) 55%, rgba(8, 18, 36, 0.7) 100%);
+    background: linear-gradient(165deg, rgba(8, 18, 36, 0.9) 0%, rgba(8, 18, 36, 0.74) 50%, rgba(8, 18, 36, 0.5) 100%);
   }
 
   .svc-hero-bg img {

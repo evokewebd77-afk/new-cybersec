@@ -1,6 +1,4 @@
-import Icon from '../components/Icon'
 import {
-  AudienceSection,
   CheckList,
   CtaBanner,
   NoteSection,
@@ -8,437 +6,244 @@ import {
   SectionHeader,
   ServiceCardGrid,
   ServiceContact,
-  ServiceFaq,
   ServiceHero,
+  WhySection,
   usePageMeta,
 } from './ServiceShared'
 
 const heroImage =
   'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793944598/ed904119-b6ef-4060-bda8-e72805cc014b_acrpoo.png'
-const importanceImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1200/v1793945506/daf77378-d374-48e9-80a4-deaeea63a517_og9vse.png'
 
-const coverage = [
+const scope = [
   {
-    icon: 'drone',
-    title: 'Drone',
-    desc: 'Drone hardware and firmware',
-  },
-  {
-    icon: 'monitor',
-    title: 'Controller',
-    desc: 'Ground control stations and operator applications',
-  },
-  {
-    icon: 'wifi',
-    title: 'WiFi',
-    desc: 'Communication channels (RF, Wi-Fi, LTE/5G)',
-  },
-  {
-    icon: 'layers',
-    title: 'Cloud',
-    desc: 'Cloud platforms, APIs, and backend services',
-  },
-]
-
-const risks = [
-  'Loss of control or drone seizure',
-  'GPS spoofing or signal manipulation',
-  'Leakage of video, telemetry, or location data',
-  'Unauthorized firmware modification',
-  'Regulatory and compliance failures',
-]
-
-const benefits = [
-  'Protect sensitive data and operations',
-  'Prevent unauthorized drone access or misuse',
-  'Ensure safe and reliable drone operations',
-  'Meet regulatory and industry security requirements',
-  'Build trust with customers and regulators',
-]
-
-const services = [
-  {
-    icon: 'drone',
+    icon: 'document',
     title: 'Drone Hardware & Firmware Security',
-    desc: 'Complete firmware and hardware security assessment.',
     items: [
-      'Firmware analysis and integrity validation',
-      'Secure boot and firmware update mechanism testing',
-      'Debug ports and hardware exposure checks',
-      'Storage and memory protection assessment',
+      'Firmware extraction and security analysis',
+      'Secure boot and firmware integrity validation',
+      'Debug interface exposure',
+      'Hardcoded credentials and sensitive information',
+      'Firmware update mechanism security',
     ],
   },
   {
     icon: 'wifi',
-    title: 'Communication & Control Link Testing',
-    desc: 'Secure communication protocols and signal integrity.',
+    title: 'Wireless Communication Security',
     items: [
-      'RF, Wi-Fi, LTE/5G communication security testing',
-      'Encryption and authentication validation',
-      'Command injection and replay attack testing',
-      'GPS spoofing and signal interference risk analysis',
+      'Wi-Fi and Bluetooth security',
+      'Drone-to-controller communication',
+      'Authentication and pairing mechanisms',
+      'Encryption and key management',
+      'Replay and message manipulation testing',
+      'Unauthorized control command testing',
+    ],
+  },
+  {
+    icon: 'target',
+    title: 'Flight Control & Navigation Security',
+    items: [
+      'Security of control command interfaces',
+      'GPS and navigation data integrity',
+      'Unauthorized command injection scenarios',
+      'Flight mode and control access restrictions',
+      'Resilience against communication disruption',
     ],
   },
   {
     icon: 'monitor',
-    title: 'Ground Control & Mobile Application Security',
-    desc: 'Mobile and desktop control software testing.',
+    title: 'Ground Control Station Security',
     items: [
-      'Mobile and desktop control software testing',
-      'Authentication, authorization, and session management',
-      'Insecure local storage and API misuse',
-      'Reverse engineering and tampering risks',
+      'Desktop and mobile control application testing',
+      'Authentication and authorization weaknesses',
+      'Insecure local data storage',
+      'API and backend security',
+      'Sensitive operational data exposure',
     ],
   },
   {
-    icon: 'layers',
-    title: 'Backend, Cloud & API Security',
-    desc: 'Cloud infrastructure and API security assessment.',
+    icon: 'globe',
+    title: 'Cloud & Fleet Management Security',
     items: [
-      'API authentication and authorization testing',
-      'Cloud configuration and access control review',
-      'Data exposure and logging gaps',
-      'Identity and access management (IAM) assessment',
+      'Drone registration and device identity',
+      'Fleet management platform security',
+      'Access control and role permissions',
+      'Telemetry and flight data protection',
+      'Cloud APIs and remote management security',
     ],
   },
 ]
 
-const process = [
-  {
-    title: 'Scope Definition',
-    desc: 'Drone ecosystem mapping and boundaries.',
-  },
-  {
-    title: 'Threat Modeling',
-    desc: 'Attack surface analysis and risk identification.',
-  },
-  {
-    title: 'Automated & Manual Testing',
-    desc: 'Automated and manual security testing.',
-  },
-  {
-    title: 'Controlled Exploitation',
-    desc: 'Impact validation and proof of concept.',
-  },
-  {
-    title: 'Risk Scoring',
-    desc: 'Risk scoring using CVSS.',
-  },
-  {
-    title: 'Reporting & Retesting',
-    desc: 'Detailed reporting with remediation guidance and retesting support.',
-  },
+const etsiProvisions = [
+  'Secure authentication and password practices',
+  'Secure firmware updates',
+  'Protection of sensitive security parameters',
+  'Secure communication',
+  'Attack surface minimization',
+  'Software integrity',
+  'Personal and operational data protection',
+  'Vulnerability disclosure processes',
+  'Secure device installation and maintenance',
+  'Input validation and resilience',
 ]
 
-const standards = [
-  {
-    title: 'OWASP Top 10 for IoT',
-    desc: 'Common and critical security risks across connected device ecosystems.',
-  },
-  {
-    title: 'ETSI EN 303 645',
-    desc: 'Global cybersecurity baseline for consumer IoT and connected products.',
-  },
-  {
-    title: 'NIST IoT Cybersecurity Framework',
-    desc: 'Guidance for managing cybersecurity risk across IoT devices.',
-  },
-  {
-    title: 'NIST SP 800-53',
-    desc: 'Security and privacy controls for information systems and organizations.',
-  },
-  {
-    title: 'ISO/IEC 27001 & ISO/IEC 27002',
-    desc: 'Information security management systems and control guidance.',
-  },
-  {
-    title: 'ISO/IEC 62443',
-    desc: 'Security requirements for industrial automation and IoT/OT environments.',
-  },
-  {
-    title: 'MITRE ATT&CK',
-    desc: 'Adversary tactics and techniques for IoT and enterprise environments.',
-  },
-  {
-    title: 'CVE & CVSS Risk Scoring',
-    desc: 'Vulnerability identification and standardized severity scoring.',
-  },
+const methodology = [
+  { title: 'Drone Architecture & Scope Identification', desc: 'Map the drone ecosystem, components, interfaces, and assessment boundaries.' },
+  { title: 'Threat Modelling & Attack Surface Mapping', desc: 'Identify trust boundaries, entry points, and realistic attack scenarios.' },
+  { title: 'Firmware & Hardware Security Analysis', desc: 'Inspect firmware, debug interfaces, secure boot, and update mechanisms.' },
+  { title: 'Wireless Communication Security Testing', desc: 'Assess pairing, authentication, encryption, and control-link resilience.' },
+  { title: 'Flight Control & Navigation Interface Assessment', desc: 'Review command interfaces, navigation integrity, and access restrictions.' },
+  { title: 'Ground Control Application & API Testing', desc: 'Test control applications, local storage, APIs, and backend services.' },
+  { title: 'Cloud & Fleet Management Security Review', desc: 'Review device identity, access control, telemetry, and remote management.' },
+  { title: 'Risk Assessment, Reporting & Remediation Validation', desc: 'Document findings with severity ratings and verify fixes after remediation.' },
 ]
 
 const deliverables = [
-  'Executive summary for management',
-  'Detailed vulnerability findings',
-  'Risk severity and impact analysis',
-  'Proof of Concept (PoC) evidence',
-  'Step-by-step remediation recommendations',
-  'Compliance mapping (OWASP IoT, ETSI EN 303 645)',
-  'Retesting support after fixes',
+  'Drone Security Assessment Report',
+  'Firmware Security Analysis',
+  'Wireless Communication Security Findings',
+  'Flight Control and Navigation Security Findings',
+  'Ground Control Station Assessment',
+  'ETSI EN 303 645 Applicability and Assessment Checklist',
+  'Risk Classification and Remediation Recommendations',
+  'Retest Report, where included in scope',
 ]
 
-const reportSections = [
-  'Executive Summary',
-  'Technical Findings',
-  'Risk Analysis',
-  'Remediation Steps',
-]
-
-const audience = [
-  'Drone manufacturers and OEMs',
-  'Drone operators and service providers',
-  'Logistics and delivery companies',
-  'Agriculture and industrial drone users',
-  'Smart city and surveillance projects',
-  'Government, defense, and public safety agencies',
-  'Research institutions and technology startups',
-]
-
-const faqs = [
-  {
-    q: 'Do you hack or damage the drone during testing?',
-    a: 'No. Testing is performed within an agreed scope using controlled, non-destructive techniques. The objective is to identify and validate vulnerabilities without causing intentional damage to the drone or its operations.',
-  },
-  {
-    q: 'What parts of a drone system are tested?',
-    a: 'The assessment can cover drone hardware and firmware, communication and control links, ground control stations, mobile and desktop applications, backend services, APIs, and cloud platforms.',
-  },
-  {
-    q: 'Why is drone security important?',
-    a: 'Drones are connected systems that carry sensitive data and control critical operations. A security weakness can lead to loss of control, data leakage, unauthorized access, safety incidents, or compliance failures.',
-  },
-  {
-    q: 'Which standards and compliances do you follow?',
-    a: 'Assessments may reference OWASP Top 10 for IoT, ETSI EN 303 645, NIST IoT Cybersecurity Framework, NIST SP 800-53, ISO/IEC 27001 and 27002, ISO/IEC 62443, MITRE ATT&CK, and CVE/CVSS scoring depending on the agreed scope.',
-  },
-  {
-    q: 'Is Drone Security Testing mandatory for compliance?',
-    a: 'Requirements vary by industry, jurisdiction, and the standards an organization follows. Testing can support compliance and due diligence, but the specific obligations should be confirmed against the applicable regulatory framework.',
-  },
-  {
-    q: 'How long does a Drone Security Assessment take?',
-    a: 'The timeline depends on the number of devices, firmware variants, communication interfaces, applications, and backend systems in scope. A defined timeline is provided after the scoping discussion.',
-  },
-  {
-    q: 'Will drone operations be affected during testing?',
-    a: 'Testing is planned around agreed windows and safety constraints. Some scenarios may require controlled operation or a test environment, and all activities are coordinated in advance to minimize operational impact.',
-  },
-  {
-    q: 'What will we receive after the assessment?',
-    a: 'You receive an audit-ready Drone Security Report that includes an executive summary, detailed findings, risk severity and impact analysis, PoC evidence, remediation recommendations, compliance mapping, and retesting support.',
-  },
-  {
-    q: 'Who should opt for Drone Security Testing?',
-    a: 'It is recommended for drone manufacturers and OEMs, operators and service providers, logistics and delivery companies, industrial and agricultural users, smart city projects, government agencies, and research institutions.',
-  },
-  {
-    q: 'Do you test firmware and mobile applications?',
-    a: 'Yes. Firmware analysis and mobile or desktop control application testing can be included within the agreed assessment scope.',
-  },
+const whyChoose = [
+  { title: 'Specialized Connected-Device Assessment', desc: 'Testing focused on the hardware, firmware, communication, and cloud layers of drone ecosystems.' },
+  { title: 'ETSI EN 303 645-Aligned IoT Review', desc: 'Assessments consider applicable consumer IoT cybersecurity provisions for connected components.' },
+  { title: 'Firmware, Hardware & Wireless Testing', desc: 'Combine device-level analysis with communication and application security testing.' },
+  { title: 'Evidence-Based Reporting', desc: 'Receive validated findings supported by technical evidence and clear impact analysis.' },
+  { title: 'Practical Remediation Guidance', desc: 'Help engineering teams understand root causes and recommended corrective actions.' },
+  { title: 'Scope Tailored to Product Architecture', desc: 'Assessment coverage is defined around your drone platform and operational requirements.' },
 ]
 
 const inquiryOptions = [
   'Drone Security Testing',
-  'IoT Device Testing',
+  'IoT Security Testing',
   'VAPT',
   'WAPT',
+  'API Security Testing',
   'Cloud Security Review',
-  'Red Teaming',
   'Other Security Assessment',
 ]
 
 export default function DroneSecurityPage() {
   usePageMeta(
-    'Drone Security Testing | UAV & UAS Cybersecurity | ITC India CyberSec',
-    'Secure your drone ecosystem with ITC India CyberSec. Drone security testing across UAV hardware, firmware, communication links, ground control systems, mobile apps, APIs, and cloud platforms.'
+    'Drone & UAV Security Testing | ITC India CyberSec',
+    'Secure your drones and UAV ecosystems with ITC India CyberSec. Drone security testing across flight control systems, firmware, wireless communication, ground control stations, mobile apps, and cloud platforms.'
   )
 
   return (
     <main className="svc-page drone-page">
       <ServiceHero
-        eyebrow="Drone & UAV Security"
-        title="Secure Your Drone Ecosystem"
-        highlight="Before It Becomes a Cyber Risk"
-        quote="Drones are powerful tools for automation, surveillance, delivery, and data collection—but they are also connected IoT systems that can be targeted by cyber attackers."
-        text="At CyberSec ITC India, our Drone Security Testing services help organizations identify, validate, and remediate security vulnerabilities across UAV hardware, firmware, communication links, ground control systems, mobile applications, APIs, and cloud platforms. Our goal is simple: ensure your drones are secure, compliant, and safe to operate in real-world environments."
-        primaryCta="Book a Free Consultation"
-        secondaryCta="Talk to Our Security Experts"
+        eyebrow="Drone & UAV Security Testing"
+        title="Secure Your Drones"
+        highlight="Protect Your Mission"
+        text="ITC India CyberSec provides specialized security testing for drones and Unmanned Aerial Vehicles (UAVs), identifying vulnerabilities across flight control systems, firmware, wireless communication, ground control stations, mobile applications, and cloud-connected drone platforms. Our assessments incorporate applicable ETSI EN 303 645 cybersecurity provisions for connected IoT components, alongside relevant application, firmware, and communication security testing methodologies. We help drone manufacturers and technology providers strengthen device security, protect operational data, and reduce cybersecurity risks across connected drone ecosystems."
+        primaryCta="Request a Drone Security Assessment"
+        secondaryCta="Talk to Our Experts"
         image={heroImage}
+        asideTitle="Testing aligned to recognized standards"
+        asideItems={[
+          'ETSI EN 303 645-aligned IoT review',
+          'Flight control and navigation testing',
+          'Wireless communication security',
+          'Ground control and cloud platform review',
+        ]}
       />
 
       <section className="section-padding svc-bg-white">
         <div className="container">
           <SectionHeader
             label="Understanding Drone Security"
-            title="What is"
-            highlight="Drone Security Testing?"
-            subtitle="Find vulnerabilities in drones before they can be exploited."
+            title="About"
+            highlight="Drone Security Testing"
+            subtitle="Modern drones rely on interconnected systems across hardware, firmware, communication, and cloud services."
           />
-          <div className="svc-intro-card drone-intro-card">
+          <div className="svc-intro-card">
             <p>
-              Drone Security Testing is a comprehensive cybersecurity assessment of unmanned aerial
-              vehicle (UAV) systems and their supporting infrastructure.
+              Drones rely on interconnected systems, including flight controllers, GPS modules,
+              wireless communication links, ground control stations, mobile applications, and
+              cloud-based fleet management platforms.
             </p>
             <p>
-              As drones are increasingly used in logistics, agriculture, surveillance, smart cities,
-              and critical infrastructure, they have become attractive targets for cyber threats,
-              including seizing, spoofing, data leakage, and unauthorized access.
+              Security weaknesses in these components may lead to unauthorized access, sensitive
+              data exposure, compromised communication, or disruption of drone operations.
+            </p>
+            <p>
+              ITC India CyberSec conducts structured drone security assessments to identify
+              vulnerabilities across hardware, firmware, communication interfaces, control
+              applications, and connected services. Our testing evaluates cybersecurity controls
+              designed to protect drone systems against unauthorized access, insecure
+              configurations, firmware manipulation, and communication-based attacks.
             </p>
           </div>
-
-          <div className="drone-coverage-grid">
-            {coverage.map((item) => (
-              <article className="drone-coverage-card" key={item.title}>
-                <span className="drone-coverage-icon"><Icon name={item.icon} /></span>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
-          </div>
-
-          <p className="drone-overview-note">
-            By simulating real-world attack scenarios, we uncover weaknesses that could be exploited
-            and provide clear remediation guidance to strengthen your drone security posture.
-          </p>
         </div>
       </section>
 
       <section className="section-padding svc-bg-soft">
         <div className="container">
           <SectionHeader
-            label="Critical Importance"
-            title="Why Drone Security Testing"
-            highlight="is Important"
-            subtitle="A single security flaw in a drone system can lead to:"
+            label="Scope of Assessment"
+            title="Scope of"
+            highlight="Drone Security Testing"
+            subtitle="Assessment coverage spans the drone, its communication links, control stations, and connected cloud services."
           />
-          <div className="drone-importance-layout">
-            <figure className="drone-importance-media">
-              <img
-                src={importanceImage}
-                alt="Drone security risks and assessment controls"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <div className="drone-importance-stack">
-              <article className="drone-importance-card">
-                <h3>Potential Risks</h3>
-                <ul className="svc-list drone-risk-list">
-                  {risks.map((risk) => (
-                    <li key={risk}>
-                      <Icon name="shield" />
-                      <span>{risk}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-              <article className="drone-importance-card">
-                <h3>How Testing Helps</h3>
-                <CheckList items={benefits} />
-              </article>
-            </div>
-          </div>
-          <div className="soc3-callout">
-            <Icon name="shield" className="soc3-callout-icon" />
-            <span>In high-risk environments, drone security is mission-critical.</span>
-          </div>
+          <ServiceCardGrid services={scope} />
         </div>
       </section>
 
-      <section className="section-padding svc-bg-white svc-cards-compact drone-services-section">
+      <section className="section-padding svc-bg-white">
         <div className="container">
           <SectionHeader
-            label="Our Services"
-            title="Our Drone Security"
-            highlight="Testing Services"
-            subtitle="Comprehensive security assessment for your entire drone ecosystem."
+            label="ETSI EN 303 645"
+            title="ETSI EN 303 645-Based"
+            highlight="Drone Security Review"
+            subtitle="For applicable connected consumer IoT components within drone ecosystems, our review can assess relevant ETSI EN 303 645 provisions, including:"
           />
-          <ServiceCardGrid services={services} />
+          <div className="svc-deliverables-card">
+            <CheckList items={etsiProvisions} />
+          </div>
+          <div className="soc3-callout">
+            <span>
+              Important scope note: ETSI EN 303 645 is a consumer IoT cybersecurity baseline, not
+              a drone-specific aviation safety or certification standard. Its applicability to a
+              drone depends on the product, intended use, and components being assessed.
+            </span>
+          </div>
         </div>
       </section>
 
       <ProcessSection
-        id="drone-process"
-        label="Our Process"
-        title="How We Perform"
-        highlight="Drone Security Testing"
-        subtitle="CyberSec ITC India follows a hybrid testing methodology that combines automated analysis with in-depth manual testing."
-        steps={process}
+        label="Our Methodology"
+        title="Drone Security Testing"
+        highlight="Methodology"
+        subtitle="All testing is conducted within an agreed authorization and safety scope, using controlled environments and non-disruptive methods wherever possible."
+        steps={methodology}
       />
 
       <section className="section-padding svc-bg-white">
         <div className="container">
           <SectionHeader
-            label="Standards & Frameworks"
-            title="Aligned With"
-            highlight="Industry Standards"
-            subtitle="Our assessments may reference recognized IoT, security, and risk frameworks selected for your environment and agreed scope."
-          />
-          <div className="svc-standards-grid">
-            {standards.map((item) => (
-              <article className="svc-standard-card" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding svc-bg-soft">
-        <div className="container">
-          <SectionHeader
             label="What You Get"
-            title="What You Get After"
-            highlight="the Assessment"
-            subtitle="You receive a clear, actionable, and audit-ready Drone Security Report designed for both technical teams and leadership."
+            title="Assessment"
+            highlight="Deliverables"
+            subtitle="At the end of the engagement, you receive a clear, actionable, and audit-ready Drone Security Assessment."
           />
-          <div className="svc-overview-grid">
-            <div className="svc-deliverables-card">
-              <CheckList items={deliverables} />
-            </div>
-            <aside className="drone-report-card">
-              <div className="drone-report-head">
-                <span className="drone-report-icon"><Icon name="document" /></span>
-                <div>
-                  <span>Drone Security Report</span>
-                  <strong>Assessment Deliverable</strong>
-                </div>
-              </div>
-              <ul>
-                {reportSections.map((item) => (
-                  <li key={item}>
-                    <span className="drone-report-dot" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </aside>
+          <div className="svc-deliverables-card">
+            <CheckList items={deliverables} />
           </div>
         </div>
       </section>
 
-      <AudienceSection
-        label="Who Should Opt"
-        title="Who Should Opt for"
-        highlight="Drone Security Testing?"
-        items={audience}
-        callout="If your drones are connected, autonomous, or data-driven, security testing is essential."
-      />
-
-      <ServiceFaq
-        label="Frequently Asked Questions"
-        title="Drone Security"
-        highlight="FAQs"
-        subtitle="Common questions about drone security testing scope, standards, timelines, and reporting."
-        faqs={faqs}
-      />
+      <WhySection items={whyChoose} />
 
       <CtaBanner
-        title="Secure Your Drone Ecosystem"
-        highlight="Before It Becomes a Cyber Risk"
-        text="Identify and remediate vulnerabilities across your UAV hardware, firmware, communication links, applications, and cloud services. Partner with ITC India CyberSec for a structured Drone Security Assessment."
-        primaryCta="Book a Free Consultation"
-        secondaryCta="Contact Our Experts"
+        title="Build Secure."
+        highlight="Fly Confidently."
+        text="Protect your connected devices and drone ecosystems with comprehensive security testing from ITC India CyberSec."
+        primaryCta="Request a Drone Security Assessment"
+        secondaryCta="Talk to Our Experts"
       />
 
       <ServiceContact
@@ -448,7 +253,10 @@ export default function DroneSecurityPage() {
       />
 
       <NoteSection>
-        Our goal is simple: ensure your drones are secure, compliant, and safe to operate in real-world environments.
+        ITC India CyberSec provides structured drone security testing aligned with applicable ETSI
+        EN 303 645 provisions and recognized industry guidelines. Assessment coverage is tailored to
+        the agreed product scope and does not guarantee that every possible vulnerability will be
+        identified.
       </NoteSection>
     </main>
   )

@@ -1266,22 +1266,14 @@ img { max-width: 100%; display: block; }
   margin-bottom: 16px;
 }
 
-.iot-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 11px;
-  background: var(--blue-soft);
-  border: 1px solid rgba(31, 111, 229, 0.16);
-  color: var(--blue);
-  flex-shrink: 0;
-}
-
-.iot-icon svg {
-  width: 22px;
-  height: 22px;
+.iot-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 18px;
 }
 
 .iot-card-header h4 {
@@ -2172,9 +2164,21 @@ img { max-width: 100%; display: block; }
 }
 
 .detail-icon {
-  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  border: 1px solid rgba(31, 111, 229, 0.16);
+  border-radius: 10px;
   flex-shrink: 0;
-  margin-top: 2px;
+}
+
+.detail-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .contact-detail-row h4 {
@@ -2212,8 +2216,21 @@ img { max-width: 100%; display: block; }
 }
 
 .shield-icon-small {
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--blue);
+  background: var(--white);
+  border: 1px solid rgba(31, 111, 229, 0.16);
+  border-radius: 9px;
   flex-shrink: 0;
+}
+
+.shield-icon-small svg {
+  width: 19px;
+  height: 19px;
 }
 
 /* Contact Form */
@@ -3796,6 +3813,11 @@ img { max-width: 100%; display: block; }
     border-top: 1px solid var(--line);
     gap: 12px;
     align-items: flex-start;
+    max-height: calc(100vh - 114px);
+    max-height: calc(100dvh - 114px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   .nav-links.open {
@@ -3812,8 +3834,11 @@ img { max-width: 100%; display: block; }
     padding: 10px 14px;
   }
 
-  .accorp-mega-dropdown {
+  .accorp-mega-dropdown,
+  .nav-item-dropdown:hover .accorp-mega-dropdown {
     position: static;
+    left: auto;
+    right: auto;
     transform: none;
     width: 100%;
     max-width: 100%;
@@ -3825,24 +3850,36 @@ img { max-width: 100%; display: block; }
     display: none;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
   }
 
   .nav-item-dropdown.active .accorp-mega-dropdown {
     display: block;
+    left: auto;
+    right: auto;
+    transform: none;
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .accorp-tabs-row {
-    overflow-x: auto;
-    padding-bottom: 8px;
-    gap: 16px;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding-bottom: 10px;
+    gap: 8px 18px;
   }
 
   .accorp-cards-grid {
     grid-template-columns: 1fr;
     gap: 8px;
     min-height: auto;
+  }
+
+  .accorp-card-desc {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
   }
 
   .accorp-dropdown-footer {
@@ -3855,8 +3892,30 @@ img { max-width: 100%; display: block; }
 
   .hero-section {
     min-height: auto;
-    padding-top: 76px;
-    padding-bottom: 44px;
+    padding-top: 128px;
+    padding-bottom: 52px;
+  }
+
+  .hero-slider-arrow {
+    display: none;
+  }
+
+  .hero-slide-img {
+    object-position: 78% center;
+  }
+
+  .hero-slide-overlay {
+    background: linear-gradient(
+      160deg,
+      rgba(8, 18, 36, 0.86) 0%,
+      rgba(8, 18, 36, 0.58) 50%,
+      rgba(8, 18, 36, 0.42) 100%
+    );
+  }
+
+  .hero-slider-dots {
+    bottom: 20px;
+    left: 24px;
   }
 
   .hero-content {
@@ -3909,6 +3968,150 @@ img { max-width: 100%; display: block; }
     margin-top: 24px;
   }
 
+  .section-padding {
+    padding: 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    padding: 4px 13px;
+    margin-bottom: 12px;
+    letter-spacing: 1.2px;
+  }
+
+  .section-title {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .audits-grid {
+    gap: 18px;
+  }
+
+  .audit-card {
+    padding: 24px 20px;
+  }
+
+  .audit-card h3 {
+    font-size: 20px;
+  }
+
+  .audit-lead {
+    font-size: 13.5px;
+    margin-bottom: 10px;
+  }
+
+  .audit-desc {
+    font-size: 13.5px;
+    margin-bottom: 16px;
+  }
+
+  .audit-quote {
+    font-size: 13px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+  }
+
+  .audit-points {
+    margin-bottom: 20px;
+  }
+
+  .audit-points li {
+    font-size: 13px;
+    padding: 7px 0;
+  }
+
+  .iot-overview-grid {
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .iot-info-card {
+    padding: 20px 18px;
+  }
+
+  .iot-card-header {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .iot-card-image {
+    margin-bottom: 14px;
+  }
+
+  .iot-card-header h4 {
+    font-size: 14px;
+  }
+
+  .iot-card-text {
+    font-size: 13.5px;
+    margin-bottom: 12px;
+  }
+
+  .device-pill {
+    font-size: 12px;
+    padding: 7px 13px;
+  }
+
+  .check-tag {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .iot-cert-header {
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+  }
+
+  .cert-shield-icon {
+    font-size: 30px;
+  }
+
+  .iot-cert-header h3 {
+    font-size: 22px;
+  }
+
+  .iot-cert-header p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .iot-cert-features {
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .cert-feature-item {
+    gap: 12px;
+  }
+
+  .cert-feature-item h4 {
+    font-size: 15px;
+  }
+
+  .cert-feature-item p {
+    font-size: 12.5px;
+  }
+
+  .iot-banner-footer {
+    text-align: center;
+  }
+
+  .iot-banner-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .form-row-2 {
     grid-template-columns: 1fr;
   }
@@ -3943,6 +4146,10 @@ img { max-width: 100%; display: block; }
     grid-template-columns: 1fr;
   }
 
+  .lab-grid .lab-card:nth-child(n + 4) {
+    display: none;
+  }
+
   .faq-grid.faq-grid-split {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -3958,7 +4165,7 @@ img { max-width: 100%; display: block; }
   }
 
   .iot-cert-banner {
-    padding: 28px 20px;
+    padding: 24px 18px;
   }
 
   .contact-wrapper {
@@ -3966,12 +4173,12 @@ img { max-width: 100%; display: block; }
   }
 
   .about-hero {
-    padding-top: 96px;
-    padding-bottom: 44px;
+    padding-top: 128px;
+    padding-bottom: 52px;
   }
 
   .about-hero-overlay {
-    background: linear-gradient(180deg, rgba(8, 18, 36, 0.95) 0%, rgba(8, 18, 36, 0.88) 55%, rgba(8, 18, 36, 0.72) 100%);
+    background: linear-gradient(165deg, rgba(8, 18, 36, 0.9) 0%, rgba(8, 18, 36, 0.74) 50%, rgba(8, 18, 36, 0.5) 100%);
   }
 
   .about-hero-bg img {
