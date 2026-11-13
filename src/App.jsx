@@ -747,7 +747,7 @@ function App() {
       a: 'Our testing methodologies are non-destructive and tailored to avoid business disruption. Testing can be executed in staging environments or during low-traffic periods.'
     },
     {
-      q: 'Which standards and compliance frameworks do you follow for testing?',
+      q: 'Which standards and frameworks do you follow for testing?',
       a: 'We adhere to OWASP Top 10, OWASP Mobile Top 10, SANS 25, NIST SP 800-115, ETSI EN 303 645, IEC 62443, ISO/IEC 27001, SOC 2 / SOC 3, and HIPAA guidelines.'
     },
     {
@@ -1688,10 +1688,10 @@ function App() {
                 I am very satisfied with the result and the recommendations of the audit report. It was an eye opener.
               </blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar">GB</div>
+                <div className="author-avatar">MO</div>
                 <div className="author-info">
-                  <h4>Guladab Bawa</h4>
-                  <p>Head of division, Evoke AI</p>
+                  <h4>Mohit</h4>
+                  <p>Managing Director, ICRA</p>
                 </div>
               </div>
             </div>
@@ -1702,10 +1702,10 @@ function App() {
                 CyberSec’s ISO 27001 policy templates saved us months of effort and simplified our entire compliance journey. Everything was structured, practical, and ready for immediate implementation.
               </blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar orange-avatar">MV</div>
+                <div className="author-avatar orange-avatar">SH</div>
                 <div className="author-info">
-                  <h4>Manish Vig</h4>
-                  <p>Director of Eurocert</p>
+                  <h4>Shrinivas</h4>
+                  <p>Software team lead, Aivara</p>
                 </div>
               </div>
             </div>
@@ -1716,10 +1716,10 @@ function App() {
                 The false positive rate is remarkably low compared to other tools we have used. The AI powered reporting is a game changer for our security team.
               </blockquote>
               <div className="testimonial-author">
-                <div className="author-avatar">SS</div>
+                <div className="author-avatar">SA</div>
                 <div className="author-info">
-                  <h4>Col. Sukhpal Singh</h4>
-                  <p>CEO at Sustainable Futures</p>
+                  <h4>Shrijan Agarwal</h4>
+                  <p>Director</p>
                 </div>
               </div>
             </div>
