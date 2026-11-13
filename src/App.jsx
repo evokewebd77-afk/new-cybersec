@@ -20,31 +20,32 @@ import TermsPage from './pages/TermsPage'
 import { usePageMeta } from './pages/ServiceShared'
 
 const pathRoutes = {
-  '/about': '#about',
-  '/soc2-type1': '#soc2-type1',
-  '/soc2-type2': '#soc2-type2',
-  '/soc3': '#soc3',
-  '/iso-27001': '#iso-27001',
-  '/iso-iec-27001': '#iso-27001',
-  '/iso-27000': '#iso-27000',
-  '/iso-iec-27000': '#iso-27000',
-  '/iso-27701': '#iso-27701',
-  '/iso-iec-27701': '#iso-27701',
-  '/cloud-security-review': '#cloud-security-review',
-  '/hipaa': '#hipaa',
-  '/hipaa-audit': '#hipaa',
-  '/wapt': '#wapt',
-  '/red-teaming': '#red-teaming',
-  '/api-microservices-security': '#api-microservices-security',
-  '/api-microservices-security-testing': '#api-microservices-security',
-  '/drone-security': '#drone-security',
-  '/drone-security-testing': '#drone-security',
-  '/drone-testing': '#drone-security',
-  '/uas-security': '#drone-security',
-  '/iot-security': '#iot-security',
-  '/iot-security-testing': '#iot-security',
-  '/iot-device-pentesting': '#iot-security',
-  '/iot-device-testing': '#iot-security',
+  '/about': '/about',
+  '/soc2-type1': '/soc2-type1',
+  '/soc2-type2': '/soc2-type2',
+  '/soc3': '/soc3',
+  '/iso-27001': '/iso-27001',
+  '/iso-iec-27001': '/iso-27001',
+  '/iso-27000': '/iso-27000',
+  '/iso-iec-27000': '/iso-27000',
+  '/iso-27701': '/iso-27701',
+  '/iso-iec-27701': '/iso-27701',
+  '/cloud-security-review': '/cloud-security-review',
+  '/hipaa': '/hipaa',
+  '/hipaa-audit': '/hipaa',
+  '/wapt': '/wapt',
+  '/red-teaming': '/red-teaming',
+  '/api-microservices-security': '/api-microservices-security',
+  '/api-microservices-security-testing': '/api-microservices-security',
+  '/drone-security': '/drone-security',
+  '/drone-security-testing': '/drone-security',
+  '/drone-testing': '/drone-security',
+  '/uas-security': '/drone-security',
+  '/iot-security': '/iot-security',
+  '/iot-security-testing': '/iot-security',
+  '/iot-device-pentesting': '/iot-security',
+  '/iot-device-testing': '/iot-security',
+  '/contact': '/contact',
 }
 
 const resolveRoute = () => {
@@ -87,25 +88,25 @@ const submitInquiry = async (form) => {
 }
 
 const searchPages = [
-  { title: 'About Us', href: '#about', keywords: 'company team experience information security' },
-  { title: 'SOC 2 Type I Readiness', href: '#soc2-type1', keywords: 'soc 2 type 1 audit compliance' },
-  { title: 'SOC 2 Type II Readiness', href: '#soc2-type2', keywords: 'soc 2 type 2 audit compliance' },
-  { title: 'SOC 3 Assurance', href: '#soc3', keywords: 'soc 3 audit compliance' },
-  { title: 'ISO/IEC 27001', href: '#iso-27001', keywords: 'iso27001 iso iec 27001 consultancy isms certification information security audit' },
-  { title: 'ISO/IEC 27000', href: '#iso-27000', keywords: 'iso27000 iso iec 27000 series consultancy strategy 27002 27005 27701 standards' },
-  { title: 'ISO/IEC 27701 Privacy Certification', href: '#iso-27701', keywords: 'iso27701 iso iec 27701 privacy pims certification personal data gdpr ccpa' },
-  { title: 'Cloud Security Review', href: '#cloud-security-review', keywords: 'cloud security review aws azure gcp infrastructure iam configuration assessment cloud penetration testing' },
-  { title: 'API & Microservices Security Testing', href: '#api-microservices-security', keywords: 'api microservices security testing rest graphql oauth authorization api gateway business logic' },
-  { title: 'Drone Security Testing', href: '#drone-security', keywords: 'drone uav uas security testing firmware rf communication ground control gps spoofing iot' },
-  { title: 'IoT Security Testing', href: '#iot-security', keywords: 'iot connected devices security testing firmware hardware etsi en 303 645 wireless cloud platform' },
-  { title: 'HIPAA Compliance', href: '#hipaa', keywords: 'hipaa healthcare phi patient data security audit' },
-  { title: 'Web Application Testing (WAPT)', href: '#wapt', keywords: 'web website penetration testing' },
+  { title: 'About Us', href: '/about', keywords: 'company team experience information security' },
+  { title: 'SOC 2 Type I Readiness', href: '/soc2-type1', keywords: 'soc 2 type 1 audit compliance' },
+  { title: 'SOC 2 Type II Readiness', href: '/soc2-type2', keywords: 'soc 2 type 2 audit compliance' },
+  { title: 'SOC 3 Assurance', href: '/soc3', keywords: 'soc 3 audit compliance' },
+  { title: 'ISO/IEC 27001', href: '/iso-27001', keywords: 'iso27001 iso iec 27001 consultancy isms certification information security audit' },
+  { title: 'ISO/IEC 27000', href: '/iso-27000', keywords: 'iso27000 iso iec 27000 series consultancy strategy 27002 27005 27701 standards' },
+  { title: 'ISO/IEC 27701 Privacy Certification', href: '/iso-27701', keywords: 'iso27701 iso iec 27701 privacy pims certification personal data gdpr ccpa' },
+  { title: 'Cloud Security Review', href: '/cloud-security-review', keywords: 'cloud security review aws azure gcp infrastructure iam configuration assessment cloud penetration testing' },
+  { title: 'API & Microservices Security Testing', href: '/api-microservices-security', keywords: 'api microservices security testing rest graphql oauth authorization api gateway business logic' },
+  { title: 'Drone Security Testing', href: '/drone-security', keywords: 'drone uav uas security testing firmware rf communication ground control gps spoofing iot' },
+  { title: 'IoT Security Testing', href: '/iot-security', keywords: 'iot connected devices security testing firmware hardware etsi en 303 645 wireless cloud platform' },
+  { title: 'HIPAA Compliance', href: '/hipaa', keywords: 'hipaa healthcare phi patient data security audit' },
+  { title: 'Web Application Testing (WAPT)', href: '/wapt', keywords: 'web website penetration testing' },
   { title: 'Audits & Compliance', href: '#audits', keywords: 'hipaa healthcare grc assessment' },
   { title: 'Application Security (VAPT)', href: '#vapt-software', keywords: 'application penetration testing security' },
   { title: 'IoT & Drone Security', href: '#vapt-iot', keywords: 'iot device drone embedded testing' },
-  { title: 'Red Teaming', href: '#red-teaming', keywords: 'red team adversary simulation offensive security' },
+  { title: 'Red Teaming', href: '/red-teaming', keywords: 'red team adversary simulation offensive security' },
   { title: 'Certifications', href: '#certifications', keywords: 'iso 27001 iso 27701 standards' },
-  { title: 'Contact Us', href: '#contact', keywords: 'contact email phone inquiry' },
+  { title: 'Contact Us', href: '/contact', keywords: 'contact email phone inquiry' },
 ]
 
 function AboutPage() {
@@ -423,22 +424,22 @@ function App() {
   const partnerAutoplayPaused = useRef(false)
   const mobileNavRef = useRef(null)
 
-  const isAbout = route === '#about'
-  const isSoc2Type1 = route === '#soc2-type1'
-  const isSoc2Type2 = route === '#soc2-type2'
-  const isSoc3 = route === '#soc3'
-  const isIso27001 = route === '#iso-27001'
-  const isIso27000 = route === '#iso-27000'
-  const isIso27701 = route === '#iso-27701'
-  const isCloudSecurityReview = route === '#cloud-security-review'
-  const isApiMicroservicesSecurity = route === '#api-microservices-security'
-  const isDroneSecurity = route === '#drone-security'
-  const isIotSecurity = route === '#iot-security'
-  const isHipaa = route === '#hipaa'
-  const isRedTeaming = route === '#red-teaming'
-  const isWapt = route === '#wapt'
-  const isPrivacy = route === '#privacy'
-  const isTerms = route === '#terms'
+  const isAbout = route === '/about'
+  const isSoc2Type1 = route === '/soc2-type1'
+  const isSoc2Type2 = route === '/soc2-type2'
+  const isSoc3 = route === '/soc3'
+  const isIso27001 = route === '/iso-27001'
+  const isIso27000 = route === '/iso-27000'
+  const isIso27701 = route === '/iso-27701'
+  const isCloudSecurityReview = route === '/cloud-security-review'
+  const isApiMicroservicesSecurity = route === '/api-microservices-security'
+  const isDroneSecurity = route === '/drone-security'
+  const isIotSecurity = route === '/iot-security'
+  const isHipaa = route === '/hipaa'
+  const isRedTeaming = route === '/red-teaming'
+  const isWapt = route === '/wapt'
+  const isPrivacy = route === '/privacy'
+  const isTerms = route === '/terms'
   const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isIotSecurity || isHipaa || isRedTeaming || isWapt || isPrivacy || isTerms
   const isHome = !isServicePage
   usePageMeta(isHome ? 'ITC India CyberSec — Cybersecurity Testing & Certification' : (isAbout ? 'About Us — ITC India CyberSec' : null), isHome ? 'ITC India Information Security Division provides VAPT, IoT and drone security testing, SOC 2, ISO 27001, HIPAA and cloud security compliance services.' : (isAbout ? 'Learn about ITC India Information Security Division, our mission, vision and values.' : null))
@@ -452,7 +453,9 @@ function App() {
   const submitSearch = (event) => {
     event.preventDefault()
     if (!searchResults.length) return
-    window.location.hash = searchResults[0].href
+    const sp = Object.keys(pathRoutes).find((p) => pathRoutes[p] === searchResults[0].href) || searchResults[0].href.replace('#','/')
+    window.history.pushState({}, '', sp)
+    setRoute(resolveRoute())
     setSearchOpen(false)
   }
 
@@ -478,6 +481,45 @@ function App() {
       requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
     }
   }, [isServicePage, route])
+
+  useEffect(() => {
+    // Remove hash from URL on initial load
+    if (window.location.hash) {
+      const h = window.location.hash
+      const path = Object.keys(pathRoutes).find((p) => pathRoutes[p] === h) || '/'
+      window.history.replaceState({}, '', path)
+      setRoute(resolveRoute())
+    }
+    const onClick = (e) => {
+      const a = e.target.closest && e.target.closest('a')
+      if (!a) return
+      const href = a.getAttribute('href')
+      if (!href || !href.startsWith('#')) return
+      const hash = href
+      const path = Object.keys(pathRoutes).find((p) => pathRoutes[p] === hash)
+      if (path) {
+        e.preventDefault()
+        window.history.pushState({}, '', path)
+        setRoute(resolveRoute())
+        window.scrollTo(0, 0)
+      } else {
+        // in-page anchor: scroll without hash
+        const id = hash.slice(1)
+        const el = document.getElementById(id)
+        if (el) {
+          e.preventDefault()
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      }
+    }
+    document.addEventListener('click', onClick)
+    const onPop = () => setRoute(resolveRoute())
+    window.addEventListener('popstate', onPop)
+    return () => {
+      document.removeEventListener('click', onClick)
+      window.removeEventListener('popstate', onPop)
+    }
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400)
@@ -579,19 +621,19 @@ function App() {
       title: 'SOC 2 Type I Readiness',
       desc: 'Point-in-time readiness assessment verifying control design across AICPA Trust Services Criteria.',
       icon: '📋',
-      href: '#soc2-type1'
+      href: '/soc2-type1'
     },
     {
       title: 'SOC 2 Type II Readiness',
       desc: 'Readiness support for evaluating operating effectiveness of security controls over 6 to 12 months.',
       icon: '🛡️',
-      href: '#soc2-type2'
+      href: '/soc2-type2'
     },
     {
       title: 'SOC 3 Assurance',
       desc: 'General-use compliance attestation report & seal for website trust and enterprise deals.',
       icon: '🌐',
-      href: '#soc3'
+      href: '/soc3'
     }
   ]
 
@@ -601,25 +643,25 @@ function App() {
         title: 'ISO/IEC 27001 (ISMS)',
         desc: 'Global benchmark for managing information security policies, controls, and risk.',
         icon: '🏅',
-        href: '#iso-27001'
+        href: '/iso-27001'
       },
       {
         title: 'ISO/IEC 27000',
         desc: 'Foundational security architecture, vocabulary, and standards taxonomy.',
         icon: '📖',
-        href: '#iso-27000'
+        href: '/iso-27000'
       },
       {
         title: 'ISO/IEC 27701 (Privacy)',
         desc: 'Privacy Information Management System (PIMS) for personal data and GDPR alignment.',
         icon: '🔐',
-        href: '#iso-27701'
+        href: '/iso-27701'
       },
       {
         title: 'Red Teaming',
         desc: 'Objective-led adversary simulation to test people, processes, and defensive readiness.',
         icon: '◎',
-        href: '#red-teaming'
+        href: '/red-teaming'
       }
     ]
   }
@@ -630,19 +672,19 @@ function App() {
         title: 'WAPT (Web Pentesting)',
         desc: 'Expert manual & automated vulnerability assessment aligned with OWASP Top 10.',
         icon: '💻',
-        href: '#wapt'
+        href: '/wapt'
       },
       {
         title: 'API & Microservices Security',
         desc: 'Deep security testing for REST, GraphQL, and microservices authorization flows.',
         icon: '⚡',
-        href: '#api-microservices-security'
+        href: '/api-microservices-security'
       },
       {
         title: 'Cloud Security Review',
         desc: 'Cloud posture assessments, IAM misconfigurations, and container security audits.',
         icon: '☁️',
-        href: '#cloud-security-review'
+        href: '/cloud-security-review'
       }
     ],
     iot: [
@@ -650,7 +692,7 @@ function App() {
         title: 'IoT Device Pentesting',
         desc: 'Hardware, firmware, wireless, application, API, and cloud security testing for connected devices.',
         icon: '🔬',
-        href: '#iot-security'
+        href: '/iot-security'
       }
     ]
   }
@@ -789,7 +831,7 @@ function App() {
             <ul ref={mobileNavRef} className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
               <li>
                 <a
-                  href="#about"
+                  href="/about"
                   onClick={(e) => {
                     if (isAbout) {
                       e.preventDefault()
@@ -840,7 +882,7 @@ function App() {
                       <span>AICPA &amp; CERT-In aligned audit methodologies with zero operational downtime</span>
                     </div>
                     <a
-                      href="#contact"
+                      href="/contact"
                       className="footer-cta"
                       onClick={() => { setActiveDropdown(null); setMobileMenuOpen(false); }}
                     >
@@ -852,7 +894,7 @@ function App() {
               </li>
 
               <li>
-                <a href="#hipaa" onClick={() => setMobileMenuOpen(false)}>
+                <a href="/hipaa" onClick={() => setMobileMenuOpen(false)}>
                   HIPAA
                 </a>
               </li>
@@ -985,8 +1027,8 @@ function App() {
                 </div>
               </li>
 
-              <li><a href="#drone-security" onClick={() => setMobileMenuOpen(false)}>Drone Testing</a></li>
-              <li><a href="#contact" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>Get Started</a></li>
+              <li><a href="/drone-security" onClick={() => setMobileMenuOpen(false)}>Drone Testing</a></li>
+              <li><a href="/contact" className="nav-cta" onClick={() => setMobileMenuOpen(false)}>Get Started</a></li>
             </ul>
 
             <button
@@ -1082,7 +1124,7 @@ function App() {
             </p>
 
             <div className="hero-buttons">
-              <a href="#contact" className="btn btn-orange">Book a Free Security Audit &rarr;</a>
+              <a href="/contact" className="btn btn-orange">Book a Free Security Audit &rarr;</a>
               <a href="#audits" className="btn btn-glass">Explore Our Services &darr;</a>
             </div>
 
@@ -1136,11 +1178,11 @@ function App() {
                 <li><span className="check-icon">✓</span> Trust Services Criteria: Security, Confidentiality &amp; Privacy</li>
               </ul>
               <div className="audit-inline-links">
-                <a href="#soc2-type1" className="audit-inline-link">SOC 2 Type I Readiness →</a>
-                <a href="#soc2-type2" className="audit-inline-link">SOC 2 Type II Readiness →</a>
-                <a href="#soc3" className="audit-inline-link">Get SOC 3 Trust Badge →</a>
+                <a href="/soc2-type1" className="audit-inline-link">SOC 2 Type I Readiness →</a>
+                <a href="/soc2-type2" className="audit-inline-link">SOC 2 Type II Readiness →</a>
+                <a href="/soc3" className="audit-inline-link">Get SOC 3 Trust Badge →</a>
               </div>
-              <a href="#contact" className="btn btn-outline-blue">Request SOC Audit →</a>
+              <a href="/contact" className="btn btn-outline-blue">Request SOC Audit →</a>
             </div>
 
             <div className="audit-card highlight-card">
@@ -1159,9 +1201,9 @@ function App() {
                 <li><span className="check-icon">✓</span> Breach Notification Rule &amp; Incident Readiness</li>
               </ul>
               <div className="audit-inline-links">
-                <a href="#hipaa" className="audit-inline-link">Explore HIPAA Compliance</a>
+                <a href="/hipaa" className="audit-inline-link">Explore HIPAA Compliance</a>
               </div>
-              <a href="#contact" className="btn btn-orange">Request HIPAA Audit →</a>
+              <a href="/contact" className="btn btn-orange">Request HIPAA Audit →</a>
             </div>
           </div>
         </div>
@@ -1268,7 +1310,7 @@ function App() {
             </div>
 
             <div className="iot-banner-footer">
-              <a href="#iot-security" className="btn btn-orange">Learn More... →</a>
+              <a href="/iot-security" className="btn btn-orange">Learn More... →</a>
             </div>
           </div>
         </div>
@@ -1329,7 +1371,7 @@ function App() {
                 </p>
               </div>
 
-              <a href="#wapt" className="btn btn-blue">
+              <a href="/wapt" className="btn btn-blue">
                 Know More →
               </a>
             </div>
@@ -1366,7 +1408,7 @@ function App() {
                 </p>
               </div>
 
-              <a href="#wapt" className="btn btn-orange">
+              <a href="/wapt" className="btn btn-orange">
                 Know More →
               </a>
             </div>
@@ -1545,25 +1587,25 @@ function App() {
           </div>
 
           <div className="cert-cards-grid">
-            <a href="#iso-27001" className="cert-card">
+            <a href="/iso-27001" className="cert-card">
               <div className="cert-tag blue-tag">Information Security</div>
               <h3>ISO/IEC 27001</h3>
               <p>Establishes best practices for managing and protecting sensitive business and customer information.</p>
             </a>
 
-            <a href="#iso-27000" className="cert-card">
+            <a href="/iso-27000" className="cert-card">
               <div className="cert-tag orange-tag">Security Overview</div>
               <h3>ISO/IEC 27000</h3>
               <p>Defines the vocabulary and foundational concepts for the entire ISO 27000 family of information security standards.</p>
             </a>
 
-            <a href="#iot-security" className="cert-card">
+            <a href="/iot-security" className="cert-card">
               <div className="cert-tag green-tag">IoT Security</div>
               <h3>ETSI EN 303 645</h3>
               <p>Defines cybersecurity requirements for consumer IoT devices to prevent common security threats.</p>
             </a>
 
-            <a href="#iso-27701" className="cert-card">
+            <a href="/iso-27701" className="cert-card">
               <div className="cert-tag purple-tag">Privacy Management</div>
               <h3>ISO/IEC 27701</h3>
               <p>Enhances privacy governance by defining controls for personal data protection and compliance.</p>
@@ -1990,32 +2032,32 @@ function App() {
             <div className="footer-column">
               <h4>Solutions</h4>
               <ul>
-                <li><a href="#wapt">Web Testing (WAPT)</a></li>
-                <li><a href="#api-microservices-security">API &amp; Microservices Security</a></li>
-                <li><a href="#red-teaming">Red Teaming</a></li>
-                <li><a href="#cloud-security-review">Cloud Security Review</a></li>
+                <li><a href="/wapt">Web Testing (WAPT)</a></li>
+                <li><a href="/api-microservices-security">API &amp; Microservices Security</a></li>
+                <li><a href="/red-teaming">Red Teaming</a></li>
+                <li><a href="/cloud-security-review">Cloud Security Review</a></li>
               </ul>
             </div>
 
             <div className="footer-column">
               <h4>Frameworks</h4>
               <ul>
-                <li><a href="#hipaa">HIPAA</a></li>
-                <li><a href="#soc2-type1">SOC 2 Type I Readiness</a></li>
-                <li><a href="#soc2-type2">SOC 2 Type II Readiness</a></li>
-                <li><a href="#soc3">SOC 3 Readiness</a></li>
-                <li><a href="#iso-27001">ISO 27001</a></li>
-                <li><a href="#iso-27000">ISO 27000</a></li>
-                <li><a href="#iso-27701">ISO 27701</a></li>
+                <li><a href="/hipaa">HIPAA</a></li>
+                <li><a href="/soc2-type1">SOC 2 Type I Readiness</a></li>
+                <li><a href="/soc2-type2">SOC 2 Type II Readiness</a></li>
+                <li><a href="/soc3">SOC 3 Readiness</a></li>
+                <li><a href="/iso-27001">ISO 27001</a></li>
+                <li><a href="/iso-27000">ISO 27000</a></li>
+                <li><a href="/iso-27701">ISO 27701</a></li>
               </ul>
             </div>
 
             <div className="footer-column">
               <h4>Company &amp; Contact</h4>
               <ul>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="/about">About Us</a></li>
                 <li><a href="#testimonials">Trust &amp; Safety</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/contact">Contact</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>
                 <li><a href="/terms">Terms of Service</a></li>
                 <li><a href="tel:+919316473033">Phone: +91 93164 73033</a></li>
