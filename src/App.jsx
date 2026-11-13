@@ -15,6 +15,9 @@ import WaptPage from './pages/WaptPage'
 import ApiMicroservicesSecurityPage from './pages/ApiMicroservicesSecurityPage'
 import DroneSecurityPage from './pages/DroneSecurityPage'
 import IotSecurityPage from './pages/IotSecurityPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
+import { usePageMeta } from './pages/ServiceShared'
 
 const pathRoutes = {
   '/about': '#about',
@@ -56,7 +59,7 @@ const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbytzBGr
 
 const submitInquiry = async (form) => {
   if (!APPS_SCRIPT_WEB_APP_URL) {
-    throw new Error('Form is not connected yet. Please email info@itcindia.org directly.')
+    throw new Error('Form is not connected yet. Please email cybersec@itcindia.org directly.')
   }
 
   const payload = new URLSearchParams(new FormData(form))
@@ -135,7 +138,7 @@ function AboutPage() {
 
   const stats = [
     { value: '10+', label: 'Years Experience' },
-    { value: '500+', label: 'Global Audits' },
+    { value: '125+', label: 'Security Audits' },
     { value: '30+', label: 'Security Experts' },
     { value: '100%', label: 'Client Privacy' },
   ]
@@ -776,7 +779,7 @@ function App() {
               />
               <div className="nav-logo-text">
                 <span className="brand">CyberSec</span>
-                <span className="tagline">IS Division of ITC INDIA</span>
+                <span className="tagline">Information Security Division of ITC India</span>
               </div>
             </a>
 
@@ -1005,6 +1008,8 @@ function App() {
       {isApiMicroservicesSecurity && <ApiMicroservicesSecurityPage />}
       {isDroneSecurity && <DroneSecurityPage />}
       {isIotSecurity && <IotSecurityPage />}
+      {isPrivacy && <PrivacyPage />}
+      {isTerms && <TermsPage />}
       {isHipaa && <HipaaPage />}
       {isRedTeaming && <RedTeamingPage />}
       {isWapt && <WaptPage />}
@@ -1260,7 +1265,7 @@ function App() {
             </div>
 
             <div className="iot-banner-footer">
-              <a href="#contact" className="btn btn-orange">Learn More... →</a>
+              <a href="#iot-security" className="btn btn-orange">Learn More... →</a>
             </div>
           </div>
         </div>
@@ -1358,7 +1363,7 @@ function App() {
                 </p>
               </div>
 
-              <a href="https://cybersec.itcindia.org/vapt" target="_blank" rel="noreferrer" className="btn btn-orange">
+              <a href="#wapt" className="btn btn-orange">
                 Know More →
               </a>
             </div>
@@ -1429,9 +1434,9 @@ function App() {
                 <div className="detail-col results">
                   <h4>✅ Expected Results</h4>
                   <ul>
-                    <li><strong>Zero PHI breaches</strong> across tested systems</li>
+                    <li><strong>PHI protection</strong> aligned with HIPAA safeguards</li>
                     <li><strong>Secured medical endpoints</strong> &amp; clinical networks</li>
-                    <li><strong>45% reduction</strong> in phishing success rate</li>
+                    <li><strong>Reduced phishing risk</strong> through awareness and controls</li>
                   </ul>
                 </div>
               </div>
@@ -1525,7 +1530,7 @@ function App() {
         <div className="container">
           <div className="section-header">
             <img
-              src="https://cybersec.itcindia.org/bglogo.webp"
+              src={logoUrl}
               alt="ITC India CyberSec"
               className="certs-logo"
             />
@@ -1549,7 +1554,7 @@ function App() {
               <p>Defines the vocabulary and foundational concepts for the entire ISO 27000 family of information security standards.</p>
             </a>
 
-            <a href="https://cybersec.itcindia.org/iot-security" target="_blank" rel="noreferrer" className="cert-card">
+            <a href="#iot-security" className="cert-card">
               <div className="cert-tag green-tag">IoT Security</div>
               <h3>ETSI EN 303 645</h3>
               <p>Defines cybersecurity requirements for consumer IoT devices to prevent common security threats.</p>
@@ -1593,7 +1598,7 @@ function App() {
               { name: 'SFT', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1779180796/sft_fl24sf.webp' },
               { name: 'Aivara', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794467267/unnamed_r91bbe.webp' },
               { name: 'Biiot', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794468245/unnamed_tyaekp.webp' },
-              { name: 'ICCRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.webp' }
+              { name: 'ICRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.webp' }
             ].map((partner) => (
               <div className="partner-wordmark" key={partner.name}>
                 {partner.logo && (
@@ -1831,7 +1836,7 @@ function App() {
                   <span className="detail-icon"><Icon name="mail" /></span>
                   <div>
                     <h4>Email Inquiries</h4>
-                    <p><a href="mailto:info@itcindia.org">info@itcindia.org</a></p>
+                    <p><a href="mailto:cybersec@itcindia.org">cybersec@itcindia.org</a></p>
                   </div>
                 </div>
 
@@ -1925,6 +1930,7 @@ function App() {
 
                   <input type="hidden" name="formSource" value="Home Contact" />
 
+                  <div style={{display:'none'}} aria-hidden="true"><input type="text" name="website" tabIndex="-1" autoComplete="off" /></div>
                   {formError && <p className="form-error" role="alert">{formError}</p>}
 
                   <button type="submit" className="btn btn-orange btn-full" disabled={formSubmitting}>
@@ -1952,14 +1958,14 @@ function App() {
                 />
                 <div>
                   <span className="footer-brand-title">CyberSec</span>
-                  <span className="footer-brand-tag">IS Division of ITC INDIA</span>
+                  <span className="footer-brand-tag">Information Security Division of ITC India</span>
                 </div>
               </div>
               <p>
                 Elevating global security standards through advanced VAPT, IoT security, and comprehensive compliance frameworks. Your trusted partner in digital resilience.
               </p>
               <div className="footer-social">
-                <a href="mailto:damnart.seo@gmail.com,devkumar.swipe@gmail.com,cybersec@itcindia.org" aria-label="Email damnart.seo@gmail.com, devkumar.swipe@gmail.com, and cybersec@itcindia.org">
+                <a href="mailto:cybersec@itcindia.org" aria-label="Email damnart.seo@gmail.com, devkumar.swipe@gmail.com, and cybersec@itcindia.org">
                   <svg className="footer-email-logo" viewBox="0 0 24 24" aria-hidden="true">
                     <path fill="#4285F4" d="M3 7 5.5 5v13H3z" />
                     <path fill="#EA4335" d="m3 7 2.5-2 6.5 5-2.2 2z" />
@@ -2007,13 +2013,15 @@ function App() {
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#testimonials">Trust &amp; Safety</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
                 <li><a href="tel:+919316473033">Phone: +91 93164 73033</a></li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <p>© 2026 CyberSec. All Rights Reserved.</p>
+            <p>© 2026 ITC India Pvt. Ltd. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
@@ -2033,7 +2041,7 @@ function App() {
         )}
         <a
           className="floating-btn floating-btn-whatsapp"
-          href="https://wa.me/917589783899"
+          href="https://wa.me/919316473033"
           target="_blank"
           rel="noreferrer"
           aria-label="Chat with us on WhatsApp"

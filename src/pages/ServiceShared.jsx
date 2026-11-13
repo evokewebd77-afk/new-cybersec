@@ -282,6 +282,8 @@ export function ServiceContact({
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
+    const hp = e.currentTarget.querySelector('input[name="website"]')
+    if (hp && hp.value) return
     setFormSubmitted(true)
     setTimeout(() => setFormSubmitted(false), 5000)
   }
@@ -390,7 +392,8 @@ export function ServiceContact({
                 <label htmlFor="svcSubscribe">Subscribe to security &amp; compliance updates</label>
               </div>
 
-              <button type="submit" className="btn btn-orange btn-full">
+              <div style={{display:'none'}} aria-hidden="true"><input type="text" name="website" tabIndex="-1" autoComplete="off" /></div>
+            <button type="submit" className="btn btn-orange btn-full">
                 Send Message
               </button>
             </form>

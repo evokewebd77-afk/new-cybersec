@@ -3794,6 +3794,16 @@ img { max-width: 100%; display: block; }
   .nav-top-contact { display: none; }
 }
 
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .nav-logo-text .tagline { display: none; }
+  .nav-links { gap: 2px; }
+  .nav-links a { font-size: 11.5px; padding: 6px 8px; }
+  .nav-cta { padding: 8px 14px; font-size: 12px; }
+  .nav-search input { width: 150px; }
+  .nav-top-contact span:last-child { display: none; }
+}
+
 @media (max-width: 768px) {
   .nav-top-bar .container { padding: 0 16px; }
   .nav-search { width: 100%; }
