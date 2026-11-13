@@ -2002,7 +2002,6 @@ function App() {
                 />
                 <div>
                   <span className="footer-brand-title">CyberSec</span>
-                  <span className="footer-brand-tag">Information Security Division of ITC India</span>
                 </div>
               </div>
               <p>
