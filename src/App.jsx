@@ -437,8 +437,11 @@ function App() {
   const isHipaa = route === '#hipaa'
   const isRedTeaming = route === '#red-teaming'
   const isWapt = route === '#wapt'
-  const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isIotSecurity || isHipaa || isRedTeaming || isWapt
+  const isPrivacy = route === '#privacy'
+  const isTerms = route === '#terms'
+  const isServicePage = isAbout || isSoc2Type1 || isSoc2Type2 || isSoc3 || isIso27001 || isIso27000 || isIso27701 || isCloudSecurityReview || isApiMicroservicesSecurity || isDroneSecurity || isIotSecurity || isHipaa || isRedTeaming || isWapt || isPrivacy || isTerms
   const isHome = !isServicePage
+  usePageMeta(isHome ? 'ITC India CyberSec — Cybersecurity Testing & Certification' : (isAbout ? 'About Us — ITC India CyberSec' : null), isHome ? 'ITC India Information Security Division provides VAPT, IoT and drone security testing, SOC 2, ISO 27001, HIPAA and cloud security compliance services.' : (isAbout ? 'Learn about ITC India Information Security Division, our mission, vision and values.' : null))
   const normalizedSearchQuery = searchQuery.toLowerCase().replace(/[^a-z0-9]/g, '')
   const searchResults = normalizedSearchQuery
     ? searchPages.filter((page) =>
