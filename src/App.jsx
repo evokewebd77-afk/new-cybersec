@@ -824,7 +824,6 @@ function App() {
               />
               <div className="nav-logo-text">
                 <span className="brand">CyberSec</span>
-                <span className="tagline">Information Security Division of ITC India</span>
               </div>
             </a>
 
