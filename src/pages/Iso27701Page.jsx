@@ -11,7 +11,7 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793869197/cf008c5c-ad6c-4b0f-99ad-b1f80cbb214d_hjsv4l.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793869197/cf008c5c-ad6c-4b0f-99ad-b1f80cbb214d_hjsv4l.webp'
 
 const privacyControls = [
   {

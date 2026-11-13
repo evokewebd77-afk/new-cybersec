@@ -14,9 +14,9 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793858626/848ee798-907b-4ff5-b85f-af19e299a36e_mkpxki.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793858626/848ee798-907b-4ff5-b85f-af19e299a36e_mkpxki.webp'
 const frameworkImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793858789/39a6a7ae-4565-439f-bb9b-f6d8e6b65442_gglqxa.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793858789/39a6a7ae-4565-439f-bb9b-f6d8e6b65442_gglqxa.webp'
 
 const services = [
   {

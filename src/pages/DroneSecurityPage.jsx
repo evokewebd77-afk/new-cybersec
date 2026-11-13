@@ -12,7 +12,7 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793944598/ed904119-b6ef-4060-bda8-e72805cc014b_acrpoo.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793944598/ed904119-b6ef-4060-bda8-e72805cc014b_acrpoo.webp'
 
 const scope = [
   {

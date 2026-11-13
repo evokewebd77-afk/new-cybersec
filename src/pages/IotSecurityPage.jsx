@@ -11,7 +11,7 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1794472448/a82c37b1-ae89-41a1-978f-51e14ddbd22d_ncolul.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1794472448/a82c37b1-ae89-41a1-978f-51e14ddbd22d_ncolul.webp'
 
 const scope = [
   {
@@ -141,7 +141,7 @@ export default function IotSecurityPage() {
             </div>
             <div className="svc-visual-media svc-iot-intro-media">
               <img
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794473272/4df0a98f-9727-4e80-895f-424d6d5bfdf9_nkb0ks.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794473272/4df0a98f-9727-4e80-895f-424d6d5bfdf9_nkb0ks.webp"
                 alt="Connected smart devices protected by IoT security"
               />
             </div>
@@ -172,7 +172,7 @@ export default function IotSecurityPage() {
           <div className="svc-etsi-grid">
             <div className="svc-etsi-image">
               <img
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794474014/99e8c616-2049-428e-b9a1-676d9e9937c1_m5frqa.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794474014/99e8c616-2049-428e-b9a1-676d9e9937c1_m5frqa.webp"
                 alt="IoT security specialist assessing connected devices against cybersecurity standards"
               />
             </div>

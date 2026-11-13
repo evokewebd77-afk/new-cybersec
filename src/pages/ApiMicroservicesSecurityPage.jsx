@@ -12,9 +12,9 @@ import {
   usePageMeta,
 } from './ServiceShared'
 
-const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793942079/69b8c67b-6ca3-46e1-937d-f14abb866c85_gkcdiy.png'
-const pageBannerImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793942605/4a8354ea-7dd8-470b-a081-edaba63c8171_umbaat.png'
-const pageBannerImageOptimized = 'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793942605/4a8354ea-7dd8-470b-a081-edaba63c8171_umbaat.png'
+const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793942079/69b8c67b-6ca3-46e1-937d-f14abb866c85_gkcdiy.webp'
+const pageBannerImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793942605/4a8354ea-7dd8-470b-a081-edaba63c8171_umbaat.webp'
+const pageBannerImageOptimized = 'https://res.cloudinary.com/didtfhfme/image/upload/f_auto,q_auto,w_1600/v1793942605/4a8354ea-7dd8-470b-a081-edaba63c8171_umbaat.webp'
 
 const securityRisks = [
   {

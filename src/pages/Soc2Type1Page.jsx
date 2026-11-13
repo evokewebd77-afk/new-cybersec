@@ -12,10 +12,10 @@ import {
   usePageMeta,
 } from './ServiceShared'
 
-const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793852573/1caa10a9-48a1-45ea-bdf0-05d46ab2ca1b_sthrkh.png'
+const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793852573/1caa10a9-48a1-45ea-bdf0-05d46ab2ca1b_sthrkh.webp'
 
 const serviceImage = {
-  src: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.png',
+  src: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.webp',
   alt: 'Compliance and security controls aligned with SOC 2 Trust Services Criteria',
 }
 

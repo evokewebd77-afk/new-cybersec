@@ -11,9 +11,9 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793867792/bb197450-fc00-48c6-a6e5-fc300000c9a9_mwb4e2.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793867792/bb197450-fc00-48c6-a6e5-fc300000c9a9_mwb4e2.webp'
 const outcomesImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793867983/22d38259-9ced-47e0-bcaa-95ba095cc449_uk8nh3.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793867983/22d38259-9ced-47e0-bcaa-95ba095cc449_uk8nh3.webp'
 
 const standards = [
   {

@@ -177,7 +177,7 @@ function AboutPage() {
       <section className="about-hero">
         <div className="about-hero-bg">
           <img
-            src="https://res.cloudinary.com/didtfhfme/image/upload/v1793680468/0436919b-2e9e-4338-a44d-48e14638aeeb_sijj2v.png"
+            src="https://res.cloudinary.com/didtfhfme/image/upload/v1793680468/0436919b-2e9e-4338-a44d-48e14638aeeb_sijj2v.webp"
             alt="ITC India Information Security Division — Defending the Digital Frontier"
           />
           <div className="about-hero-overlay"></div>
@@ -230,7 +230,7 @@ function AboutPage() {
         <div className="container about-mv-layout">
           <div className="about-mv-visual">
             <img
-              src="https://res.cloudinary.com/didtfhfme/image/upload/v1793681104/1d7f70f5-d9ce-4bd3-b4cb-2be39e8e349e_mgww48.png"
+              src="https://res.cloudinary.com/didtfhfme/image/upload/v1793681104/1d7f70f5-d9ce-4bd3-b4cb-2be39e8e349e_mgww48.webp"
               alt="Our Mission and Vision — ITC India Information Security Division"
             />
           </div>
@@ -283,7 +283,7 @@ function AboutPage() {
             </div>
             <div className="about-standards-visual">
               <img
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1793682190/7d699f0f-59b0-4e79-bb9c-e44d412eb182_rh3qqe.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1793682190/7d699f0f-59b0-4e79-bb9c-e44d412eb182_rh3qqe.webp"
                 alt="ITC India Global Standards — OWASP, ISO 27001, SOC 2, HIPAA, NIST CSF, GDPR & DPDP compliance"
               />
             </div>
@@ -497,15 +497,15 @@ function App() {
 
   const heroSlides = [
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784109/45d427a4-150e-4fd0-ac54-4b7d40215646_ed0izc.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784109/45d427a4-150e-4fd0-ac54-4b7d40215646_ed0izc.webp',
       alt: 'ITC India CyberSec Operations Center & Compliance Audit Lab'
     },
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793782449/9b8ec815-ae1b-47df-8698-cebd22e223f8_idj2yo.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793782449/9b8ec815-ae1b-47df-8698-cebd22e223f8_idj2yo.webp',
       alt: 'Cybersecurity SOC Analysts 24/7 Monitoring'
     },
     {
-      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.png',
+      image: 'https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.webp',
       alt: 'Cybersecurity Compliance & Security Shield Operations'
     }
   ]
@@ -566,7 +566,7 @@ function App() {
     }
   }
 
-  const logoUrl = "https://res.cloudinary.com/didtfhfme/image/upload/v1792749521/itclogo_cg16hj.png"
+  const logoUrl = "https://res.cloudinary.com/didtfhfme/image/upload/v1792749521/itclogo_cg16hj.webp"
 
   const auditsMenuData = [
     {
@@ -1174,7 +1174,7 @@ function App() {
             <div className="iot-info-card">
               <img
                 className="iot-card-image"
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794473272/4df0a98f-9727-4e80-895f-424d6d5bfdf9_nkb0ks.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794473272/4df0a98f-9727-4e80-895f-424d6d5bfdf9_nkb0ks.webp"
                 alt="Connected IoT devices including cameras, smart appliances, and wearables"
               />
               <div className="iot-card-header">
@@ -1189,7 +1189,7 @@ function App() {
             <div className="iot-info-card">
               <img
                 className="iot-card-image"
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794474014/99e8c616-2049-428e-b9a1-676d9e9937c1_m5frqa.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1794474014/99e8c616-2049-428e-b9a1-676d9e9937c1_m5frqa.webp"
                 alt="IoT security specialist assessing connected devices"
               />
               <div className="iot-card-header">
@@ -1207,7 +1207,7 @@ function App() {
             <div className="iot-info-card">
               <img
                 className="iot-card-image"
-                src="https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.png"
+                src="https://res.cloudinary.com/didtfhfme/image/upload/v1793784462/da45355a-19e6-4028-a2f7-d179bec5f336_lz2cw9.webp"
                 alt="Cybersecurity analysts monitoring threats and protecting connected systems"
               />
               <div className="iot-card-header">
@@ -1525,7 +1525,7 @@ function App() {
         <div className="container">
           <div className="section-header">
             <img
-              src="https://cybersec.itcindia.org/bglogo.png"
+              src="https://cybersec.itcindia.org/bglogo.webp"
               alt="ITC India CyberSec"
               className="certs-logo"
             />
@@ -1588,12 +1588,12 @@ function App() {
 
             <div className="partners-grid" ref={partnersTrackRef} aria-label="Trusted partners">
               {[
-              { name: 'Damnart', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/c_crop,w_666,h_366,x_144,y_364/v1781845919/DAMNART_LOGO_1_xjilzi.png' },
+              { name: 'Damnart', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/c_crop,w_666,h_366,x_144,y_364/v1781845919/DAMNART_LOGO_1_xjilzi.webp' },
               { name: 'Evoke AI', logo: 'https://evokeaisolutions.com/assets/evoke.webp' },
               { name: 'SFT', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1779180796/sft_fl24sf.webp' },
-              { name: 'Aivara', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794467267/unnamed_r91bbe.png' },
-              { name: 'Biiot', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794468245/unnamed_tyaekp.png' },
-              { name: 'ICCRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.png' }
+              { name: 'Aivara', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794467267/unnamed_r91bbe.webp' },
+              { name: 'Biiot', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794468245/unnamed_tyaekp.webp' },
+              { name: 'ICCRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.webp' }
             ].map((partner) => (
               <div className="partner-wordmark" key={partner.name}>
                 {partner.logo && (

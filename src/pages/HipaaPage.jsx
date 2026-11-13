@@ -12,8 +12,8 @@ import {
   usePageMeta,
 } from './ServiceShared'
 
-const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793857021/624fc0ed-7f05-4a63-ab05-31474cab4f39_fhrala.png'
-const stakesImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793857404/e941a85d-a2ba-4861-9e80-c7fc617bb224_vzzfgj.png'
+const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793857021/624fc0ed-7f05-4a63-ab05-31474cab4f39_fhrala.webp'
+const stakesImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793857404/e941a85d-a2ba-4861-9e80-c7fc617bb224_vzzfgj.webp'
 
 const principles = [
   {

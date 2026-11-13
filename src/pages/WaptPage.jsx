@@ -13,7 +13,7 @@ import {
   usePageMeta,
 } from './ServiceShared'
 
-const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793428383/42c1bcda-deea-4bd5-9392-d3c0bf4903fb_mc5jvc.png'
+const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793428383/42c1bcda-deea-4bd5-9392-d3c0bf4903fb_mc5jvc.webp'
 
 const owasp = [
   {

@@ -12,7 +12,7 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793877890/c2765bc8-cf0c-4678-9395-5ffb1a3883d3_qun96b.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793877890/c2765bc8-cf0c-4678-9395-5ffb1a3883d3_qun96b.webp'
 
 const securityRisks = [
   'Publicly exposed cloud storage containing sensitive information',

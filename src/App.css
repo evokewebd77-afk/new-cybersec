@@ -3010,7 +3010,7 @@ img { max-width: 100%; display: block; }
     radial-gradient(ellipse 70% 90% at 85% 12%, rgba(31, 111, 229, 0.32), transparent 60%),
     radial-gradient(ellipse 55% 70% at 4% 90%, rgba(96, 165, 250, 0.16), transparent 65%),
     linear-gradient(180deg, rgba(8, 18, 36, 0.45) 0%, rgba(11, 26, 51, 0.6) 65%, rgba(13, 31, 60, 0.75) 100%),
-    url('https://res.cloudinary.com/didtfhfme/image/upload/v1793683019/ad217c99-7868-4f12-8841-593aeb2c8cc6_uuptow.png') center / cover no-repeat;
+    url('https://res.cloudinary.com/didtfhfme/image/upload/v1793683019/ad217c99-7868-4f12-8841-593aeb2c8cc6_uuptow.webp') center / cover no-repeat;
   padding-top: 154px;
   padding-bottom: 72px;
   border-bottom: 1px solid rgba(148, 163, 184, 0.14);

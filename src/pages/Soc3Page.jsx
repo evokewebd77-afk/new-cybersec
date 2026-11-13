@@ -14,7 +14,7 @@ import {
   usePageMeta,
 } from './ServiceShared'
 
-const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793855974/0f059114-201b-49fc-ab82-50e61bf5264f_dp4ogd.png'
+const heroImage = 'https://res.cloudinary.com/didtfhfme/image/upload/v1793855974/0f059114-201b-49fc-ab82-50e61bf5264f_dp4ogd.webp'
 
 const criteria = [
   {

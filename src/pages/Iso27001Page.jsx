@@ -12,9 +12,9 @@ import {
 } from './ServiceShared'
 
 const heroImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793861733/327999c7-95d8-4218-9dc7-db7b0d1bbde5_eincyx.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793861733/327999c7-95d8-4218-9dc7-db7b0d1bbde5_eincyx.webp'
 const coverageImage =
-  'https://res.cloudinary.com/didtfhfme/image/upload/v1793862231/306eb048-4efd-4d89-bf8e-1adf879e80c1_fz3pz6.png'
+  'https://res.cloudinary.com/didtfhfme/image/upload/v1793862231/306eb048-4efd-4d89-bf8e-1adf879e80c1_fz3pz6.webp'
 
 const principles = [
   {
