@@ -15,7 +15,8 @@ export default function TermsPage() {
         <p>We are not liable for any indirect or consequential damages arising from use of this website or services.</p>
         <h3>Governing law</h3>
         <p>These terms are governed by the laws of India.</p>
-        <h3>Contact</h3>
+        <h3>Privacy</h3>
+        <p>Our collection and use of personal information is described in our <a href="/privacy-policy">Privacy Policy</a>.</p>
         <p>Email: cybersec@itcindia.org. Phone: +91 93164 73033.</p>
       </div>
     </section>

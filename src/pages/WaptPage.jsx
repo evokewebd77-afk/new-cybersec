@@ -270,13 +270,6 @@ export default function WaptPage() {
         primaryCta="Request a WAPT Assessment"
         secondaryCta="Talk to Our Security Experts"
         image={heroImage}
-        asideTitle="Testing aligned to recognized standards"
-        asideItems={[
-          'OWASP Top 10 and OWASP WSTG',
-          'OWASP ASVS and NIST SP 800-115',
-          'Manual testing and automated tooling',
-          'Validated findings with remediation guidance',
-        ]}
       />
 
       <section className="section-padding svc-bg-white">

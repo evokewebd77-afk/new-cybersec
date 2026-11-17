@@ -4532,3 +4532,12 @@ img { max-width: 100%; display: block; }
     transition: none;
   }
 }
+
+/* ===== PRIVACY PAGE ===== */
+.privacy-page h1.section-title { color: var(--navy-deep); margin-bottom: 12px; }
+.privacy-page h3 { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--blue); margin: 28px 0 10px; }
+.privacy-page p, .privacy-page li { color: var(--navy); line-height: 1.75; }
+.privacy-page ul { padding-left: 22px; margin: 12px 0 18px; }
+.privacy-page li { margin-bottom: 8px; }
+.privacy-page strong { color: var(--navy-deep); }
+.privacy-page em { color: var(--muted); }

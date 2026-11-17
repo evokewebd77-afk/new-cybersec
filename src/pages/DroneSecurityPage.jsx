@@ -143,13 +143,6 @@ export default function DroneSecurityPage() {
         primaryCta="Request a Drone Security Assessment"
         secondaryCta="Talk to Our Experts"
         image={heroImage}
-        asideTitle="Testing aligned to recognized standards"
-        asideItems={[
-          'ETSI EN 303 645-aligned IoT review',
-          'Flight control and navigation testing',
-          'Wireless communication security',
-          'Ground control and cloud platform review',
-        ]}
       />
 
       <section className="section-padding svc-bg-white">

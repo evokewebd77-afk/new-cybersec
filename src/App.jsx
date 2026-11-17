@@ -47,6 +47,10 @@ const pathRoutes = {
   '/iot-device-pentesting': '/iot-security',
   '/iot-device-testing': '/iot-security',
   '/contact': '/contact',
+  '/privacy': '/privacy',
+  '/privacy-policy': '/privacy',
+  '/terms': '/terms',
+  '/terms-of-service': '/terms',
 }
 
 const resolveRoute = () => {
@@ -786,7 +790,7 @@ function App() {
 
         <div className="nav-main">
           <div className="container">
-            <a href="#" className="nav-logo">
+            <a href="/" className="nav-logo" onClick={(e) => { e.preventDefault(); window.history.pushState({}, '', '/'); setRoute(resolveRoute()) }}>
               <img
                 src={logoUrl}
                 alt="ITC India CyberSec"
@@ -837,7 +841,6 @@ function App() {
                         className="accorp-service-card"
                         onClick={() => { setActiveDropdown(null); setMobileMenuOpen(false); }}
                       >
-                        <div className="accorp-card-icon">{item.icon}</div>
                         <div className="accorp-card-body">
                           <h4 className="accorp-card-title">{item.title}</h4>
                           <p className="accorp-card-desc">{item.desc}</p>
@@ -847,10 +850,6 @@ function App() {
                   </div>
 
                   <div className="accorp-dropdown-footer">
-                    <div className="footer-note">
-                      <span>🛡️</span>
-                      <span>AICPA &amp; CERT-In aligned audit methodologies with zero operational downtime</span>
-                    </div>
                     <a
                       href="/contact"
                       className="footer-cta"
@@ -903,7 +902,6 @@ function App() {
                         className="accorp-service-card"
                         onClick={() => { setActiveDropdown(null); setMobileMenuOpen(false); }}
                       >
-                        <div className="accorp-card-icon">{item.icon}</div>
                         <div className="accorp-card-body">
                           <h4 className="accorp-card-title">{item.title}</h4>
                           <p className="accorp-card-desc">{item.desc}</p>
@@ -913,10 +911,6 @@ function App() {
                   </div>
 
                   <div className="accorp-dropdown-footer">
-                    <div className="footer-note">
-                      <span>🏅</span>
-                      <span>NABL Accredited Laboratory | ISO/IEC 17025 Certified Infrastructure</span>
-                    </div>
                     <a
                       href="#certifications"
                       className="footer-cta"
@@ -971,7 +965,6 @@ function App() {
                         className="accorp-service-card"
                         onClick={() => { setActiveDropdown(null); setMobileMenuOpen(false); }}
                       >
-                        <div className="accorp-card-icon">{item.icon}</div>
                         <div className="accorp-card-body">
                           <h4 className="accorp-card-title">{item.title}</h4>
                           <p className="accorp-card-desc">{item.desc}</p>
@@ -981,10 +974,6 @@ function App() {
                   </div>
 
                   <div className="accorp-dropdown-footer">
-                    <div className="footer-note">
-                      <span>🎯</span>
-                      <span>Certified Ethical Hackers (CEH/CISSP) with OWASP &amp; NIST testing SOPs</span>
-                    </div>
                     <a
                       href="#vapt-software"
                       className="footer-cta"
@@ -1612,7 +1601,7 @@ function App() {
               { name: 'SFT', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1779180796/sft_fl24sf.webp' },
               { name: 'Aivara', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794467267/unnamed_r91bbe.webp' },
               { name: 'Biiot', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794468245/unnamed_tyaekp.webp' },
-              { name: 'ICRA', logo: 'https://icrr.icrallc.com/assets/icra-logo.webp' }
+              { name: 'ICRA', logo: 'https://res.cloudinary.com/didtfhfme/image/upload/v1794909822/unnamed_uzqn52.png' }
             ].map((partner) => (
               <div className="partner-wordmark" key={partner.name}>
                 {partner.logo && (
@@ -2016,8 +2005,6 @@ function App() {
                 <li><a href="/soc2-type2">SOC 2 Type II Readiness</a></li>
                 <li><a href="/soc3">SOC 3 Readiness</a></li>
                 <li><a href="/iso-27001">ISO 27001</a></li>
-                <li><a href="/iso-27000">ISO 27000</a></li>
-                <li><a href="/iso-27701">ISO 27701</a></li>
               </ul>
             </div>
 
@@ -2027,9 +2014,7 @@ function App() {
                 <li><a href="/about">About Us</a></li>
                 <li><a href="#testimonials">Trust &amp; Safety</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
-                <li><a href="tel:+919316473033">Phone: +91 93164 73033</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
               </ul>
             </div>
           </div>
