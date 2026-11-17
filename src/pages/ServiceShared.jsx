@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Icon from '../components/Icon'
+import { submitInquiry } from '../lib/submitInquiry'
 
 export function usePageMeta(title, description) {
   useEffect(() => {
@@ -278,14 +279,28 @@ export function ServiceContact({
   messagePlaceholder = 'Describe your requirements...',
 }) {
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitting, setFormSubmitting] = useState(false)
+  const [formError, setFormError] = useState('')
   const [inquiryType, setInquiryType] = useState(defaultInquiry)
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const hp = e.currentTarget.querySelector('input[name="website"]')
+    const form = e.currentTarget
+    const hp = form.querySelector('input[name="website"]')
     if (hp && hp.value) return
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
+    setFormSubmitting(true)
+    setFormError('')
+    try {
+      await submitInquiry(form)
+      setFormSubmitted(true)
+      form.reset()
+      setInquiryType(defaultInquiry)
+      setTimeout(() => setFormSubmitted(false), 5000)
+    } catch (error) {
+      setFormError(error.message)
+    } finally {
+      setFormSubmitting(false)
+    }
   }
 
   return (
@@ -311,22 +326,22 @@ export function ServiceContact({
               <div className="form-row-2">
                 <div className="form-group">
                   <label htmlFor="svcFullName">Full Name</label>
-                  <input id="svcFullName" type="text" className="form-input" placeholder="Full Name" required />
+                  <input id="svcFullName" name="fullName" type="text" className="form-input" placeholder="Full Name" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="svcEmail">Email Address</label>
-                  <input id="svcEmail" type="email" className="form-input" placeholder="Email Address" required />
+                  <input id="svcEmail" name="email" type="email" className="form-input" placeholder="Email Address" required />
                 </div>
               </div>
 
               <div className="form-row-2">
                 <div className="form-group">
                   <label htmlFor="svcPhone">Phone Number</label>
-                  <input id="svcPhone" type="tel" className="form-input" placeholder="Phone Number" required />
+                  <input id="svcPhone" name="phone" type="tel" className="form-input" placeholder="Phone Number" required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="svcOrg">Company / Organization</label>
-                  <input id="svcOrg" type="text" className="form-input" placeholder="Company / Organization" required />
+                  <input id="svcOrg" name="organization" type="text" className="form-input" placeholder="Company / Organization" required />
                 </div>
               </div>
 
@@ -338,6 +353,7 @@ export function ServiceContact({
                       {field.type === 'select' ? (
                         <select
                           id={field.id}
+                          name={field.id}
                           className="form-input form-select"
                           defaultValue=""
                           required={field.required}
@@ -350,6 +366,7 @@ export function ServiceContact({
                       ) : (
                         <input
                           id={field.id}
+                          name={field.id}
                           type={field.type || 'text'}
                           className="form-input"
                           placeholder={field.placeholder || field.label}
@@ -365,6 +382,7 @@ export function ServiceContact({
                 <label htmlFor="svcInquiry">Select an inquiry type</label>
                 <select
                   id="svcInquiry"
+                  name="inquiryType"
                   className="form-input form-select"
                   value={inquiryType}
                   onChange={(e) => setInquiryType(e.target.value)}
@@ -381,6 +399,7 @@ export function ServiceContact({
                 <label htmlFor="svcMessage">{messageLabel}</label>
                 <textarea
                   id="svcMessage"
+                  name="message"
                   rows="4"
                   className="form-input form-textarea"
                   placeholder={messagePlaceholder}
@@ -388,13 +407,15 @@ export function ServiceContact({
               </div>
 
               <div className="form-checkbox-group">
-                <input type="checkbox" id="svcSubscribe" defaultChecked />
+                <input type="checkbox" id="svcSubscribe" name="subscribe" value="yes" defaultChecked />
                 <label htmlFor="svcSubscribe">Subscribe to security &amp; compliance updates</label>
               </div>
 
               <div style={{display:'none'}} aria-hidden="true"><input type="text" name="website" tabIndex="-1" autoComplete="off" /></div>
-            <button type="submit" className="btn btn-orange btn-full">
-                Send Message
+              <input type="hidden" name="formSource" value={`Service Page - ${heading}`} />
+              {formError && <p className="form-error" role="alert">{formError}</p>}
+              <button type="submit" className="btn btn-orange btn-full" disabled={formSubmitting}>
+                {formSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           )}
