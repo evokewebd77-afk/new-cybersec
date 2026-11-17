@@ -1286,16 +1286,6 @@ function App() {
             </p>
           </div>
 
-          <div className="software-vapt-video">
-            <video
-              src="https://res.cloudinary.com/didtfhfme/video/upload/v1793683711/grok-video-3baf2011-cropped_qj1hw3.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-          </div>
-
           <div className="software-vapt-grid">
             {/* WAPT */}
             <div className="vapt-service-card">
