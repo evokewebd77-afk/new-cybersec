@@ -737,8 +737,8 @@ function App() {
         <div className="nav-top-bar">
           <div className="container">
             <div className="nav-top-contact">
-              <span>📧 cybersec@itcindia.org</span>
-              <span>📍 Mohali, Punjab, India</span>
+              <span><Icon name="mail" className="nav-top-icon" /> cybersec@itcindia.org</span>
+              <span><Icon name="target" className="nav-top-icon" /> Mohali, Punjab, India</span>
             </div>
             <form
               className="nav-search"
@@ -1075,7 +1075,7 @@ function App() {
 
             <h1 className="hero-title">
               <span className="highlight">Cybersecurity</span> &amp; Compliance<br />
-              for Modern Business
+              for <span className="highlight">Modern Business</span>
             </h1>
 
             <p className="hero-subtitle">
