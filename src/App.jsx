@@ -824,6 +824,7 @@ function App() {
               />
               <div className="nav-logo-text">
                 <span className="brand">CyberSec</span>
+                <span className="tagline">IS Division of ITC INDIA</span>
               </div>
             </a>
 
@@ -1273,7 +1274,7 @@ function App() {
           {/* IoT Certifications Feature Block */}
           <div className="iot-cert-banner">
             <div className="iot-cert-header">
-              <span className="cert-shield-icon">🛡️</span>
+              <span className="cert-shield-icon"><Icon name="shield" /></span>
               <div>
                 <h3>IoT Certifications</h3>
                 <p>
@@ -1284,7 +1285,7 @@ function App() {
 
             <div className="iot-cert-features">
               <div className="cert-feature-item">
-                <div className="cert-feature-icon">✔</div>
+                <div className="cert-feature-icon"><Icon name="check" /></div>
                 <div>
                   <h4>Structured Work Instructions</h4>
                   <p>ITC India has developed specialized internal work instructions for IoT and Drone Security Testing, ensuring repeatable and high-quality assessments.</p>
@@ -1292,7 +1293,7 @@ function App() {
               </div>
 
               <div className="cert-feature-item">
-                <div className="cert-feature-icon">🔒</div>
+                <div className="cert-feature-icon"><Icon name="lock" /></div>
                 <div>
                   <h4>Enhanced Security Coverage</h4>
                   <p>Our assessments cover authentication, access control, secure communication, OTA updates, and common vulnerabilities, aligned with global standards.</p>
@@ -1300,7 +1301,7 @@ function App() {
               </div>
 
               <div className="cert-feature-item">
-                <div className="cert-feature-icon">🛡️</div>
+                <div className="cert-feature-icon"><Icon name="shield" /></div>
                 <div>
                   <h4>Certified Processes</h4>
                   <p>ETSI EN 303 645 certification ensures IoT devices meet globally recognized cybersecurity baselines for connected products.</p>
@@ -1333,7 +1334,6 @@ function App() {
               muted
               loop
               playsInline
-              controls
             />
           </div>
 
@@ -2001,7 +2001,8 @@ function App() {
                   className="footer-logo-img"
                 />
                 <div>
-                  <span className="footer-brand-title">CyberSec</span>
+                   <span className="footer-brand-title">CyberSec</span>
+                   <span className="footer-brand-tag">IS Division of ITC INDIA</span>
                 </div>
               </div>
               <p>
